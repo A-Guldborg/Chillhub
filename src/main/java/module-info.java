@@ -1,0 +1,10 @@
+module com.exam.chillhub {
+    requires javafx.controls;
+    requires javafx.graphics;
+    requires javafx.fxml;
+
+    requires org.kordamp.bootstrapfx.core;
+
+    opens com.exam.chillhub to javafx.fxml, javafx.graphics;
+    exports com.exam.chillhub;
+}
