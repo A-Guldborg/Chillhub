@@ -11,7 +11,7 @@ public abstract class Media {
     private final double rating;
     private final String year;
 
-    public Media(String name, MediaType type, double rating, String year) {
+    public Media(MediaType type, String name, String year, double rating) {
         this.name = name;
         this.type = type;
         this.rating = rating;

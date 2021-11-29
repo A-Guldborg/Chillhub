@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Series extends Media {
     private List<Season> seasons;
-    public Series(String name) {
-        super(name, MediaType.SERIES);
+    public Series(String name, String year, double rating) {
+        super(MediaType.SERIES, name, year, rating);
         this.seasons = new ArrayList<>();
     }
 
@@ -18,6 +18,10 @@ public class Series extends Media {
             totalEpisodes += season.getEpisodes();
         }
         return totalEpisodes;
+    }
+
+    public void addSeason(int seasonNumber, int episodes) {
+        seasons.add(new Season(seasonNumber, episodes));
     }
 
     public List<Season> getSeasons() {
