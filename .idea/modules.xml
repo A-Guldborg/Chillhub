@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Chillhub.iml" filepath="$PROJECT_DIR$/Chillhub.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Chillhub.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Chillhub.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Chillhub.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Chillhub.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/tests/tests.iml" filepath="$PROJECT_DIR$/src/main/tests/tests.iml" />
     </modules>
   </component>
 </project>

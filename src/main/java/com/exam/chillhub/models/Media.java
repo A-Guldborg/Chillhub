@@ -1,11 +1,9 @@
 package com.exam.chillhub.models;
 
 import com.exam.chillhub.ChillhubApplication;
-import com.exam.chillhub.tests.MediaTests;
 import javafx.scene.image.Image;
 
 import java.io.IOException;
-import java.util.Locale;
 
 public abstract class Media {
     private final String name;

@@ -1,10 +1,12 @@
-package com.exam.chillhub.tests;
+package models;
 
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class MediaTests {
     @Test
     void test() {
-        assert false;
+        fail("failed :)");
     }
 }
