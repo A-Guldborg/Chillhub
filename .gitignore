@@ -1,3 +1,5 @@
+./idea/
+gradlew
 .gradle
 **/build/
 !src/**/build/

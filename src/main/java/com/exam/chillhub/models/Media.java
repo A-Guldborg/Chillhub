@@ -1,21 +1,28 @@
 package com.exam.chillhub.models;
 
+import com.exam.chillhub.ChillhubApplication;
+import com.exam.chillhub.tests.MediaTests;
+import javafx.scene.image.Image;
+
+import java.io.IOException;
+import java.util.Locale;
+
 public abstract class Media {
     private final String name;
-    private final int type;
-    // 1 = film, 2 = serie, kan evt. laves til eksplicit string eller lignende
-    private String poster; // image eller filnavn
-    public Media(String name, int type) {
+    private final MediaType type;
+
+    public Media(String name, MediaType type) {
         this.name = name;
         this.type = type;
     }
-
     public String getName() {
         return this.name;
     }
 
-    public int getType() {
+    public MediaType getType() {
         return this.type;
-        // 1 = film, 2 = serie
+    }
+    public Image getPoster() throws IOException {
+        return new Image(ChillhubApplication.class.getResource("database/" + getType().name().toLowerCase(Locale.ROOT) + "/" + getName() + ".jpg").openStream());
     }
 }

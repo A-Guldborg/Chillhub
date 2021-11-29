@@ -4,8 +4,7 @@ import java.util.*;
 public class Series extends Media {
     private List<Season> seasons;
     public Series(String name) {
-        super(name, 2);
-        // type 2 == serie
+        super(name, MediaType.SERIES);
         this.seasons = new ArrayList<>();
     }
 

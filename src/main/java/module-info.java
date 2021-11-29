@@ -4,6 +4,7 @@ module com.exam.chillhub {
     requires javafx.fxml;
 
     requires org.kordamp.bootstrapfx.core;
+    requires org.junit.jupiter.api;
 
     opens com.exam.chillhub to javafx.fxml, javafx.graphics;
     opens com.exam.chillhub.controllers to javafx.fxml, javafx.graphics;
