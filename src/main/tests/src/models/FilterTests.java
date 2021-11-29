@@ -38,6 +38,7 @@ public class FilterTests {
     @Test
     public void testFilteredByType_Movie() {
         List<Media> filteredList = filter.getFilteredType(MediaType.MOVIE);
+        assertTrue(filteredList.size() > 0);
         for (Media m : filteredList) {
             assertEquals(m.getType(), MediaType.MOVIE);
         }
@@ -46,6 +47,7 @@ public class FilterTests {
     @Test
     public void testFilteredByType_Series() {
         List<Media> filteredList = filter.getFilteredType(MediaType.SERIES);
+        assertTrue(filteredList.size() > 0);
         for (Media m : filteredList) {
             assertEquals(m.getType(), MediaType.SERIES);
         }
