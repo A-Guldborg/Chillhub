@@ -23,6 +23,7 @@ public abstract class Media {
         return this.type;
     }
     public Image getPoster() throws IOException {
-        return new Image(ChillhubApplication.class.getResource("database/" + getType().name().toLowerCase(Locale.ROOT) + "/" + getName() + ".jpg").openStream());
+        var filename = "database/" + getType().name().toLowerCase() + "/" + getName() + ".jpg";
+        return new Image(ChillhubApplication.class.getResource(filename).openStream());
     }
 }
