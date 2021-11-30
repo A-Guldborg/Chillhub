@@ -1,4 +1,5 @@
 package com.exam.chillhub.database;
+import com.exam.chillhub.ChillhubApplication;
 import com.exam.chillhub.models.*;
 
 import java.io.*;
@@ -6,8 +7,8 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class MediaDB {
-    private static List<Media> MediaDB;
-    private static Map<String, Filter> Categories;
+    private List<Media> MediaDB;
+    private Map<String, Filter> Categories;
     private final static String moviesPath = "movie/db.txt";
     private final static String seriesPath = "series/db.txt";
 
@@ -18,13 +19,13 @@ public class MediaDB {
     }
 
     private MediaDB() {
-            MediaDB = new ArrayList<>();
-            Categories = new HashMap<>();
-            addMovies();
-            addSeries();
+        MediaDB = new ArrayList<>();
+        Categories = new HashMap<>();
+        addMovies();
+        addSeries();
     }
 
-    public static List<Media> getDB() {
+    public List<Media> getDB() {
         return MediaDB;
     }
 
@@ -32,9 +33,9 @@ public class MediaDB {
         return Categories;
     }
 
-    private static void addMovies() {
+    private void addMovies() {
         try {
-            Scanner inputFile = new Scanner(Paths.get(MediaDB.class.getResource(moviesPath).toURI()).toFile());
+            Scanner inputFile = new Scanner(Paths.get(ChillhubApplication.class.getResource(moviesPath).toURI()).toFile());
             while (inputFile.hasNext()) {
                 String[] input = inputFile.nextLine().split(";");
                 Movie movie = new Movie(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',','.')));
@@ -46,9 +47,9 @@ public class MediaDB {
         }
     }
 
-    private static void addSeries() {
+    private void addSeries() {
         try {
-            Scanner inputFile = new Scanner(Paths.get(MediaDB.class.getResource(seriesPath).toURI()).toFile());
+            Scanner inputFile = new Scanner(Paths.get(ChillhubApplication.class.getResource(seriesPath).toURI()).toFile());
             String[] input = inputFile.nextLine().split(";");
             Series series = new Series(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',','.')));
             addToCategories(series, input[2].split(","));
@@ -64,7 +65,7 @@ public class MediaDB {
         }
     }
 
-    private static void addToCategories(Media media, String[] categories) {
+    private void addToCategories(Media media, String[] categories) {
         for (String category : categories) {
             String name = category.trim();
             Categories.putIfAbsent(name, new Filter(name));

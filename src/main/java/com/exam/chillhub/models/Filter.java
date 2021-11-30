@@ -1,13 +1,16 @@
 package com.exam.chillhub.models;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.*;
 
 public class Filter {
-    private final String title;
+    private final StringProperty title;
     private List<Media> filteredData;
     private HashMap<MediaType, List<Media>> cachedLists;
 
     public Filter(String title) {
-        this.title = title;
+        this.title = new SimpleStringProperty(title);
         filteredData = new ArrayList<>();
         cachedLists = new HashMap<>();
     }
@@ -26,6 +29,10 @@ public class Filter {
     }
 
     public String getTitle() {
+        return this.title.get();
+    }
+
+    public StringProperty titleProperty() {
         return this.title;
     }
 

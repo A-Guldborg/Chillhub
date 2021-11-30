@@ -10,6 +10,5 @@
             <VBox fx:id="categories" prefHeight="0.0" prefWidth="1554.0" spacing="24.0" />
          </content>
       </ScrollPane>
-      <Button fx:id="test" mnemonicParsing="false" onAction="#onTestAction" prefHeight="25.0" prefWidth="65.0" text="Button" />
    </children>
 </AnchorPane>

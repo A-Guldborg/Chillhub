@@ -1,6 +1,7 @@
 package com.exam.chillhub.controllers;
 
 import com.exam.chillhub.ChillhubApplication;
+import com.exam.chillhub.database.MediaDB;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -13,9 +14,12 @@ public class HomeController {
     private VBox categories;
 
     @FXML
-    protected void initialize() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ChillhubApplication.class.getResource("category.fxml"));
-
-        categories.getChildren().add(fxmlLoader.load());
+    public void initialize() throws IOException {
+        for (var filter : MediaDB.instance.getCategories().values()) {
+            FXMLLoader fxmlLoader = new FXMLLoader(ChillhubApplication.class.getResource("category.fxml"));
+            categories.getChildren().add(fxmlLoader.load());
+            CategoryController controller = fxmlLoader.getController();
+            controller.setModel(filter);
+        }
     }
 }

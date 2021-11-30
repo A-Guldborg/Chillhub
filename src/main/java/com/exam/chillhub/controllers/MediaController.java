@@ -1,5 +1,6 @@
 package com.exam.chillhub.controllers;
 
+import com.exam.chillhub.models.Media;
 import com.exam.chillhub.models.Movie;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,5 +22,9 @@ public class MediaController {
     @FXML
     public void initialize() throws IOException {
         poster.setImage(new Movie("ET", "20", 1).getPoster());
+    }
+
+    public void setModel(Media model) {
+
     }
 }

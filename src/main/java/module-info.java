@@ -9,4 +9,5 @@ module com.exam.chillhub {
     opens com.exam.chillhub.controllers to javafx.fxml, javafx.graphics;
     exports com.exam.chillhub;
     exports com.exam.chillhub.controllers;
+    exports com.exam.chillhub.models;
 }
