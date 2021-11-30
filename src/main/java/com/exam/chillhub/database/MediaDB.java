@@ -40,7 +40,7 @@ public class MediaDB {
             inputFile = new Scanner(Paths.get(ChillhubApplication.class.getResource(moviesPath).toURI()).toFile());
             while (inputFile.hasNext()) {
                 String[] input = inputFile.nextLine().split(";");
-                Movie movie = new Movie(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',','.')));
+                Movie movie = new Movie(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',','.')), false);
                 MediaDB.add(movie);
                 addToCategories(movie, input[2].split(","));
             }
@@ -55,7 +55,7 @@ public class MediaDB {
             inputFile = new Scanner(ChillhubApplication.class.getResource(seriesPath).openStream());
             while (inputFile.hasNext()) {
                 String[] input = inputFile.nextLine().split(";");
-                Series series = new Series(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',', '.')));
+                Series series = new Series(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',', '.')), false);
                 addToCategories(series, input[2].split(","));
                 for (int i = 4; i < input.length; i++) {
                     String[] seasons = input[i].split(",");

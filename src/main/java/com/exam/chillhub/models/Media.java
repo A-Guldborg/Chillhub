@@ -1,10 +1,7 @@
 package com.exam.chillhub.models;
 
 import com.exam.chillhub.ChillhubApplication;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.scene.image.Image;
 
 import java.io.IOException;
@@ -14,12 +11,14 @@ public abstract class Media {
     private final MediaType type;
     private final DoubleProperty rating;
     private final StringProperty year;
+    private final BooleanProperty favorite;
 
-    public Media(MediaType type, String name, String year, double rating) {
+    public Media(MediaType type, String name, String year, double rating, boolean favorite) {
         this.name = new SimpleStringProperty(name);
         this.type = type;
         this.rating = new SimpleDoubleProperty(rating);
         this.year = new SimpleStringProperty(year);
+        this.favorite = new SimpleBooleanProperty(favorite);
     }
 
     public String getName() {
@@ -34,6 +33,9 @@ public abstract class Media {
     public String getYear() {
         return this.year.get();
     }
+    public boolean getFavorite() {
+        return this.favorite.get();
+    }
     public StringProperty nameProperty() {
         return name;
     }
@@ -42,6 +44,9 @@ public abstract class Media {
     }
     public StringProperty yearProperty() {
         return year;
+    }
+    public BooleanProperty favoriteProperty() {
+        return favorite;
     }
 
     /**

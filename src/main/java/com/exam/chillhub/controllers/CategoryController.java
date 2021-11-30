@@ -15,8 +15,20 @@ public class CategoryController {
     @FXML
     private HBox media;
 
+    private Filter model;
+
     public void setModel(Filter model) {
+        // Unbind current properties
+        if (this.model != null) {
+            title.textProperty().unbindBidirectional(this.model.titleProperty());
+        }
+
+        this.model = model;
+
+        // Bind new properties
         this.title.textProperty().bindBidirectional(model.titleProperty());
+
+        // Load all media
         for (Media m : model.getFilteredData()) {
             FXMLLoader fxmlLoader = new FXMLLoader(ChillhubApplication.class.getResource("media.fxml"));
             try {

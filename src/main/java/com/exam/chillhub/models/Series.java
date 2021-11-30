@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Series extends Media {
     private List<Season> seasons;
-    public Series(String name, String year, double rating) {
-        super(MediaType.SERIES, name, year, rating);
+    public Series(String name, String year, double rating, boolean favorite) {
+        super(MediaType.SERIES, name, year, rating, favorite);
         this.seasons = new ArrayList<>();
     }
 
