@@ -20,11 +20,11 @@ public class Account {
     public void addUser(User u){
         users.add(u);
     }
-    public void getUsers(){
-        for(int i = 0; i < users.size(); i++){
-            users.get(i);
+    public List<User> getUsers(){
+
+            return users;
         }
-    }
+
     }
 
 
