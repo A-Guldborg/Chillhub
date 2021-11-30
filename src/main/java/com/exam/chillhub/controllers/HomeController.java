@@ -11,12 +11,11 @@ import java.io.IOException;
 public class HomeController {
     @FXML
     private VBox categories;
-    @FXML
-    private Button test;
 
     @FXML
-    protected void onTestAction() throws IOException {
+    protected void initialize() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ChillhubApplication.class.getResource("category.fxml"));
+
         categories.getChildren().add(fxmlLoader.load());
     }
 }

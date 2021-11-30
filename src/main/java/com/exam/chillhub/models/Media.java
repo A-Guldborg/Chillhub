@@ -17,15 +17,26 @@ public abstract class Media {
         this.rating = rating;
         this.year = year;
     }
+
     public String getName() {
         return this.name;
     }
     public MediaType getType() {
         return this.type;
     }
+
+    /**
+     * Returnér det `Image` som tilhører mediet eller `null` hvis mediet ikke har et tilknyttet billede.
+     * @return `Image` tilhørende mediet.
+     * @throws IOException hvis billedet ikke kunne åbnes.
+     */
     public Image getPoster() throws IOException {
-        var filename = "database/" + getType().name().toLowerCase() + "/" + getName() + ".jpg";
-        return new Image(ChillhubApplication.class.getResource(filename).openStream());
+        var filename = getType().name().toLowerCase() + "/posters/" + getName() + ".jpg";
+        var res = ChillhubApplication.class.getResource(filename);
+        if (res == null) {
+            return null;
+        }
+        return new Image(res.openStream());
     }
     public double getRating() {
         return this.rating;
