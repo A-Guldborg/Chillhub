@@ -1,4 +1,4 @@
-./idea/
+.idea/
 gradlew
 .gradle
 **/build/
