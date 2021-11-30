@@ -12,10 +12,10 @@ public class User {
         this.favorites = new ArrayList<>();
     }
 
-    public User(String name, Color color, List<Media> favorites) {
+    public User(String name, String color) {
         this.name = name;
-        this.color = color;
-        this.favorites = favorites;
+        this.color = Color.valueOf(color);
+        this.favorites = new ArrayList<>();
     }
 
     private Color generateColor() {
@@ -35,7 +35,11 @@ public class User {
     }
 
     public Color getColor() {
-        return color;
+        return this.color;
+    }
+
+    public String getColorString() {
+        return color.toString();
     }
 
     public List<Media> getFavorites() {

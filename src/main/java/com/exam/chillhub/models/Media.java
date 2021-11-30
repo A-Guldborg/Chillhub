@@ -12,13 +12,15 @@ public abstract class Media {
     private final DoubleProperty rating;
     private final StringProperty year;
     private final BooleanProperty favorite;
+    private final int idx;
 
-    public Media(MediaType type, String name, String year, double rating, boolean favorite) {
+    public Media(MediaType type, String name, String year, double rating, boolean favorite, int idx) {
         this.name = new SimpleStringProperty(name);
         this.type = type;
         this.rating = new SimpleDoubleProperty(rating);
         this.year = new SimpleStringProperty(year);
         this.favorite = new SimpleBooleanProperty(favorite);
+        this.idx = idx;
     }
 
     public String getName() {
@@ -47,6 +49,10 @@ public abstract class Media {
     }
     public BooleanProperty favoriteProperty() {
         return favorite;
+    }
+
+    public int getIdx() {
+        return this.idx;
     }
 
     /**
