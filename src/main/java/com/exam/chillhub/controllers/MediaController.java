@@ -19,12 +19,12 @@ public class MediaController {
     @FXML
     private Button favoriteBtn;
 
-    @FXML
-    public void initialize() throws IOException {
-        poster.setImage(new Movie("ET", "20", 1).getPoster());
-    }
-
     public void setModel(Media model) {
-
+        title.textProperty().bindBidirectional(model.nameProperty());
+        try {
+            poster.setImage(model.getPoster());
+        } catch (IOException e) {
+            throw new RuntimeException("Could not load poster");
+        }
     }
 }
