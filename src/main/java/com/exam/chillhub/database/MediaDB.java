@@ -50,14 +50,16 @@ public class MediaDB {
     private void addSeries() {
         try {
             Scanner inputFile = new Scanner(Paths.get(ChillhubApplication.class.getResource(seriesPath).toURI()).toFile());
-            String[] input = inputFile.nextLine().split(";");
-            Series series = new Series(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',','.')));
-            addToCategories(series, input[2].split(","));
-            for (int i = 4; i < input.length; i++) {
-                String[] seasons = input[i].split(",");
-                for (String season : seasons) {
-                    String[] seasonAndEpisodes = season.trim().split("-");
-                    series.addSeason(Integer.parseInt(seasonAndEpisodes[0]), Integer.parseInt(seasonAndEpisodes[1]));
+            while (inputFile.hasNext()) {
+                String[] input = inputFile.nextLine().split(";");
+                Series series = new Series(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',', '.')));
+                addToCategories(series, input[2].split(","));
+                for (int i = 4; i < input.length; i++) {
+                    String[] seasons = input[i].split(",");
+                    for (String season : seasons) {
+                        String[] seasonAndEpisodes = season.trim().split("-");
+                        series.addSeason(Integer.parseInt(seasonAndEpisodes[0]), Integer.parseInt(seasonAndEpisodes[1]));
+                    }
                 }
             }
         } catch (Exception e) {
