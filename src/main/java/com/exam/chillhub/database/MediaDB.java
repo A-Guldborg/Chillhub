@@ -3,6 +3,7 @@ import com.exam.chillhub.ChillhubApplication;
 import com.exam.chillhub.models.*;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -11,6 +12,7 @@ public class MediaDB {
     private Map<String, Filter> Categories;
     private final static String moviesPath = "movie/db.txt";
     private final static String seriesPath = "series/db.txt";
+    private Scanner inputFile;
 
     public final static MediaDB instance;
 
@@ -35,13 +37,14 @@ public class MediaDB {
 
     private void addMovies() {
         try {
-            Scanner inputFile = new Scanner(Paths.get(ChillhubApplication.class.getResource(moviesPath).toURI()).toFile());
+            inputFile = new Scanner(Paths.get(ChillhubApplication.class.getResource(moviesPath).toURI()).toFile());
             while (inputFile.hasNext()) {
                 String[] input = inputFile.nextLine().split(";");
                 Movie movie = new Movie(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',','.')));
                 MediaDB.add(movie);
                 addToCategories(movie, input[2].split(","));
             }
+            inputFile.close();
         } catch (Exception e) {
             // TODO sikr håndtering af fejl ved DB-load
         }
@@ -49,7 +52,7 @@ public class MediaDB {
 
     private void addSeries() {
         try {
-            Scanner inputFile = new Scanner(Paths.get(ChillhubApplication.class.getResource(seriesPath).toURI()).toFile());
+            inputFile = new Scanner(ChillhubApplication.class.getResource(seriesPath).openStream());
             while (inputFile.hasNext()) {
                 String[] input = inputFile.nextLine().split(";");
                 Series series = new Series(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',', '.')));
@@ -58,11 +61,15 @@ public class MediaDB {
                     String[] seasons = input[i].split(",");
                     for (String season : seasons) {
                         String[] seasonAndEpisodes = season.trim().split("-");
-                        series.addSeason(Integer.parseInt(seasonAndEpisodes[0]), Integer.parseInt(seasonAndEpisodes[1]));
+                        if (seasonAndEpisodes.length >= 2) {
+                            series.addSeason(Integer.parseInt(seasonAndEpisodes[0]), Integer.parseInt(seasonAndEpisodes[1]));
+                        }
                     }
                 }
+                MediaDB.add(series);
             }
-        } catch (Exception e) {
+            inputFile.close();
+        } catch (IOException e) {
             // TODO sikr håndtering af fejl ved DB-load
         }
     }
