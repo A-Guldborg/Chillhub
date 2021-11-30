@@ -2,51 +2,55 @@ package com.exam.chillhub.database;
 import com.exam.chillhub.models.*;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class MediaDB {
     private static List<Media> MediaDB;
     private static Map<String, Filter> Categories;
-    private final static String moviesPath = "com/exam/chillhub/movie/db.txt";
-    private final static String seriesPath = "com/exam/chillhub/series/db.txt";
+    private final static String moviesPath = "movie/db.txt";
+    private final static String seriesPath = "series/db.txt";
 
-    private MediaDB() {}
-    public static List<Media> getDB() {
-        if (MediaDB == null) {
+    public final static MediaDB instance;
+
+    static {
+        instance = new MediaDB();
+    }
+
+    private MediaDB() {
             MediaDB = new ArrayList<>();
             Categories = new HashMap<>();
             addMovies();
             addSeries();
-        }
+    }
+
+    public static List<Media> getDB() {
         return MediaDB;
     }
 
-    public static Map<String, Filter> getCategories() {
-        if (Categories == null) {
-            getDB();
-        }
+    public Map<String, Filter> getCategories() {
         return Categories;
     }
 
     private static void addMovies() {
         try {
-            Scanner inputFile = new Scanner(new File(moviesPath));
+            Scanner inputFile = new Scanner(Paths.get(MediaDB.class.getResource(moviesPath).toURI()).toFile());
             while (inputFile.hasNext()) {
                 String[] input = inputFile.nextLine().split(";");
-                Movie movie = new Movie(input[0], input[1].trim(), Double.parseDouble(input[3]));
+                Movie movie = new Movie(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',','.')));
                 MediaDB.add(movie);
                 addToCategories(movie, input[2].split(","));
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             // TODO sikr håndtering af fejl ved DB-load
         }
     }
 
     private static void addSeries() {
         try {
-            Scanner inputFile = new Scanner(new File(seriesPath));
+            Scanner inputFile = new Scanner(Paths.get(MediaDB.class.getResource(seriesPath).toURI()).toFile());
             String[] input = inputFile.nextLine().split(";");
-            Series series = new Series(input[0], input[1].trim(), Double.parseDouble(input[3]));
+            Series series = new Series(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',','.')));
             addToCategories(series, input[2].split(","));
             for (int i = 4; i < input.length; i++) {
                 String[] seasons = input[i].split(",");
@@ -55,7 +59,7 @@ public class MediaDB {
                     series.addSeason(Integer.parseInt(seasonAndEpisodes[0]), Integer.parseInt(seasonAndEpisodes[1]));
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             // TODO sikr håndtering af fejl ved DB-load
         }
     }
