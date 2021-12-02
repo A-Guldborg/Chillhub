@@ -5,6 +5,8 @@ public class Season {
     private final int episodes;
 
     public Season(int number, int episodes) {
+        if (episodes < 0)
+            throw new IllegalArgumentException("episodes");
         this.number = number;
         this.episodes = episodes;
     }
