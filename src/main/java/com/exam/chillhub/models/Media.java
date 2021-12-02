@@ -4,8 +4,6 @@ import static com.exam.chillhub.ChillhubApplication.openResource;
 import javafx.beans.property.*;
 import javafx.scene.image.Image;
 
-import java.io.IOException;
-
 public abstract class Media {
     private final StringProperty name;
     private final MediaType type;
