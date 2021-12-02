@@ -1,6 +1,6 @@
 package com.exam.chillhub.controllers;
 
-import com.exam.chillhub.ChillhubApplication;
+import static com.exam.chillhub.ChillhubApplication.getResource;
 import com.exam.chillhub.models.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +30,7 @@ public class CategoryController {
 
         // Load all media
         for (Media m : model.getFilteredData()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(ChillhubApplication.class.getResource("media.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getResource("media.fxml"));
             try {
                 media.getChildren().add(fxmlLoader.load());
             } catch (IOException e) {

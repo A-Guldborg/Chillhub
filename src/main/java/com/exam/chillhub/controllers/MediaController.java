@@ -1,6 +1,6 @@
 package com.exam.chillhub.controllers;
 
-import com.exam.chillhub.ChillhubApplication;
+import static com.exam.chillhub.ChillhubApplication.openResource;
 import com.exam.chillhub.models.Media;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -28,15 +28,11 @@ public class MediaController {
     private ImageView plusImg;
 
     public void initialize() {
-        try {
-            var img = new Image(ChillhubApplication.class.getResource("play-circle-solid.png").openStream());
-            var imgView = new ImageView(img);
-            playBtn.setGraphic(imgView);
-            checkImg = new ImageView(new Image(ChillhubApplication.class.getResource("check-circle-solid.png").openStream()));
-            plusImg = new ImageView(new Image(ChillhubApplication.class.getResource("plus-circle-solid.png").openStream()));
-        } catch (IOException e) {
-            throw new RuntimeException("Could not load resource");
-        }
+        var img = new Image(openResource("play-circle-solid.png"));
+        var imgView = new ImageView(img);
+        playBtn.setGraphic(imgView);
+        checkImg = new ImageView(new Image(openResource("check-circle-solid.png")));
+        plusImg = new ImageView(new Image(openResource("plus-circle-solid.png")));
 
         favoriteListener = this::favoriteListenerMethod;
     }
@@ -61,13 +57,8 @@ public class MediaController {
 
         this.model = model;
 
-        try {
-            poster.setImage(model.getPoster());
-            model.favoriteProperty().addListener(favoriteListener);
-        } catch (IOException e) {
-            throw new RuntimeException("Could not load poster");
-        }
-
+        poster.setImage(model.getPoster());
+        model.favoriteProperty().addListener(favoriteListener);
         updateFavoriteBtn(model.getFavorite());
     }
 

@@ -1,6 +1,6 @@
 package com.exam.chillhub.models;
 
-import com.exam.chillhub.ChillhubApplication;
+import static com.exam.chillhub.ChillhubApplication.openResource;
 import javafx.beans.property.*;
 import javafx.scene.image.Image;
 
@@ -57,14 +57,16 @@ public abstract class Media {
     /**
      * Returnér det `Image` som tilhører mediet eller `null` hvis mediet ikke har et tilknyttet billede.
      * @return `Image` tilhørende mediet.
-     * @throws IOException hvis billedet ikke kunne åbnes.
+     * @throws RuntimeException hvis billedet ikke kunne åbnes.
      */
-    public Image getPoster() throws IOException {
+    public Image getPoster() {
         var filename = getType().name().toLowerCase() + "/posters/" + getName() + ".jpg";
-        var res = ChillhubApplication.class.getResource(filename);
+        var res = openResource(filename);
+
         if (res == null) {
             return null;
         }
-        return new Image(res.openStream());
+
+        return new Image(res);
     }
 }

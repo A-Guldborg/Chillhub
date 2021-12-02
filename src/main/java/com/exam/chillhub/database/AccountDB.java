@@ -1,5 +1,5 @@
 package com.exam.chillhub.database;
-import com.exam.chillhub.ChillhubApplication;
+import static com.exam.chillhub.ChillhubApplication.openResource;
 import com.exam.chillhub.models.*;
 
 import java.util.*;
@@ -24,7 +24,7 @@ public class AccountDB {
 
     private void readAccounts() {
         try {
-            Scanner inputFile = new Scanner(ChillhubApplication.class.getResource(dbPath).openStream());
+            Scanner inputFile = new Scanner(openResource(dbPath));
             while (inputFile.hasNext()) {
                 String[] accountInfo = inputFile.nextLine().split(";");
                 Account account = new Account(accountInfo[0], accountInfo[1]);
