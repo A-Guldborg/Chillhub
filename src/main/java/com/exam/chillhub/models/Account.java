@@ -15,15 +15,15 @@ public class Account {
     }
 
     public boolean checkPassword(String EnterYourPassword) {
-        if (EnterYourPassword.equals(password)) {
-            return true;
-        } else {
-            return false;
-        }
+        return EnterYourPassword.equals(password);
     }
 
     public void addUser(User u) {
         users.add(u);
+    }
+
+    public void deleteUser(User u) {
+        users.remove(u);
     }
 
     public List<User> getUsers() {
