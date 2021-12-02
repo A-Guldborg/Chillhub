@@ -22,12 +22,12 @@ public class User {
         this.favorites = new ArrayList<>();
     }
 
-    private Color generateColor() {
+    public void generateColor() {
         Random random = new Random();
         double red = random.nextDouble();
         double green = random.nextDouble();
         double blue = random.nextDouble();
-        return new Color(red, green, blue, 1);
+        color = new Color(red, green, blue, 1);
     }
 
     public String getName() {
