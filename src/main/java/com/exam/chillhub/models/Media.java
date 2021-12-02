@@ -38,6 +38,9 @@ public abstract class Media {
     public boolean getFavorite() {
         return this.favorite.get();
     }
+    public int getIdx() {
+        return this.idx;
+    }
     public StringProperty nameProperty() {
         return name;
     }
@@ -49,10 +52,6 @@ public abstract class Media {
     }
     public BooleanProperty favoriteProperty() {
         return favorite;
-    }
-
-    public int getIdx() {
-        return this.idx;
     }
 
     /**

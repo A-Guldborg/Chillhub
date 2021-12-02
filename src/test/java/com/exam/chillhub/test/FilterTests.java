@@ -1,4 +1,4 @@
-package models;
+package com.exam.chillhub.test;
 
 import com.exam.chillhub.models.*;
 
@@ -20,9 +20,9 @@ public class FilterTests {
         for (int i = 1; i <= 5; i++) {
             Media m;
             if (i % 2 == 1) {
-                m = new Movie("Test" + i,"2018", 3.3);
+                m = new Movie("Test" + i,"2018", 3.3, false, 0);
             } else {
-                m = new Series("Test" + i, "2018", 3.3);
+                m = new Series("Test" + i, "2018", 3.3, false, 0);
             }
             filter.addToFilter(m);
         }
@@ -30,7 +30,7 @@ public class FilterTests {
 
     @Test
     public void testAddToFilter() {
-        Movie mov = new Movie("Test123", "2018", 3.3);
+        Movie mov = new Movie("Test123", "2018", 3.3, false, 0);
         filter.addToFilter(mov);
         assertTrue(filter.getFilteredData().contains(mov));
     }

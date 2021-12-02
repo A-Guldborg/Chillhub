@@ -36,23 +36,6 @@ dependencies {
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
     implementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-}
-
-sourceSets {
-    tests {
-        java {
-            compileClasspath += main.output + test.output
-            runtimeClasspath += main.output + test.output
-            srcDir file('src/tests/java')
-        }
-        resources.srcDir file('src/tests/resources')
-        dependencies {
-            implementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
-            testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-            testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-        }
-    }
 }
 
 test {
