@@ -1,6 +1,5 @@
 package com.exam.chillhub.controllers;
 
-import static com.exam.chillhub.ChillhubApplication.openResource;
 import com.exam.chillhub.models.Media;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -10,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
+import static com.exam.chillhub.ChillhubApplication.openResource;
 
 public class MediaController {
     @FXML

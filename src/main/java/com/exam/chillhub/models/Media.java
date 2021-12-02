@@ -1,8 +1,9 @@
 package com.exam.chillhub.models;
 
-import static com.exam.chillhub.ChillhubApplication.openResource;
 import javafx.beans.property.*;
 import javafx.scene.image.Image;
+
+import static com.exam.chillhub.ChillhubApplication.openResource;
 
 public abstract class Media {
     private final StringProperty name;
@@ -24,36 +25,46 @@ public abstract class Media {
     public String getName() {
         return this.name.get();
     }
+
     public MediaType getType() {
         return this.type;
     }
+
     public double getRating() {
         return this.rating.get();
     }
+
     public String getYear() {
         return this.year.get();
     }
+
     public boolean getFavorite() {
         return this.favorite.get();
     }
+
     public int getIdx() {
         return this.idx;
     }
+
     public StringProperty nameProperty() {
         return name;
     }
+
     public DoubleProperty ratingProperty() {
         return rating;
     }
+
     public StringProperty yearProperty() {
         return year;
     }
+
     public BooleanProperty favoriteProperty() {
         return favorite;
     }
 
     /**
      * Returnér det `Image` som tilhører mediet eller `null` hvis mediet ikke har et tilknyttet billede.
+     *
      * @return `Image` tilhørende mediet.
      * @throws RuntimeException hvis billedet ikke kunne åbnes.
      */

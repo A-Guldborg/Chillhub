@@ -1,8 +1,11 @@
 package com.exam.chillhub.models;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Filter {
     private final StringProperty title;
@@ -17,6 +20,7 @@ public class Filter {
 
     /**
      * Tilføjer et medie til filteret og tilføjer også mediet til en evt. cached filtrering af dette medies MediaType.
+     *
      * @param media Det medie, der skal tilføjes til filteret.
      */
     public void addToFilter(Media media) {

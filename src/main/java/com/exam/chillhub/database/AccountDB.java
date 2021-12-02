@@ -1,20 +1,27 @@
 package com.exam.chillhub.database;
-import static com.exam.chillhub.ChillhubApplication.openResource;
-import com.exam.chillhub.models.*;
 
-import java.util.*;
-import java.io.*;
+import com.exam.chillhub.models.Account;
+import com.exam.chillhub.models.Media;
+import com.exam.chillhub.models.User;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import static com.exam.chillhub.ChillhubApplication.openResource;
 
 public class AccountDB {
-    private List<Account> AccountDB;
-    private final static String dbPath = "accounts.txt";
-    private final List<Media> media;
-
     public final static AccountDB instance;
+    private final static String dbPath = "accounts.txt";
 
     static {
         instance = new AccountDB();
     }
+
+    private final List<Media> media;
+    private List<Account> AccountDB;
 
     private AccountDB() {
         AccountDB = new ArrayList<>();

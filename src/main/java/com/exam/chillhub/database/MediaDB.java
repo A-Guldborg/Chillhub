@@ -1,23 +1,26 @@
 package com.exam.chillhub.database;
-import static com.exam.chillhub.ChillhubApplication.openResource;
-import com.exam.chillhub.models.*;
 
-import java.io.*;
-import java.nio.file.Paths;
+import com.exam.chillhub.models.Filter;
+import com.exam.chillhub.models.Media;
+import com.exam.chillhub.models.Movie;
+import com.exam.chillhub.models.Series;
+
 import java.util.*;
 
+import static com.exam.chillhub.ChillhubApplication.openResource;
+
 public class MediaDB {
-    private List<Media> MediaDB;
-    private Map<String, Filter> Categories;
+    public final static MediaDB instance;
     private final static String moviesPath = "movie/db.txt";
     private final static String seriesPath = "series/db.txt";
-    private Scanner inputFile;
-
-    public final static MediaDB instance;
 
     static {
         instance = new MediaDB();
     }
+
+    private List<Media> MediaDB;
+    private Map<String, Filter> Categories;
+    private Scanner inputFile;
 
     private MediaDB() {
         MediaDB = new ArrayList<>();
@@ -38,7 +41,7 @@ public class MediaDB {
         inputFile = new Scanner(openResource(moviesPath));
         while (inputFile.hasNext()) {
             String[] input = inputFile.nextLine().split(";");
-            Movie movie = new Movie(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',','.')), false, MediaDB.size());
+            Movie movie = new Movie(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',', '.')), false, MediaDB.size());
             MediaDB.add(movie);
             addToCategories(movie, input[2].split(","));
         }

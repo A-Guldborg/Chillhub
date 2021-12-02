@@ -1,10 +1,10 @@
 package com.exam.chillhub.test;
 
+import org.junit.jupiter.api.Test;
+
 import static com.exam.chillhub.ChillhubApplication.getResource;
 import static com.exam.chillhub.ChillhubApplication.openResource;
 import static org.junit.jupiter.api.Assertions.fail;
-
-import org.junit.jupiter.api.Test;
 
 public class ChillhubApplicationTests {
     static final String resourceName = "movie/posters/ET.jpg";

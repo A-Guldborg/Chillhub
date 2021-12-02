@@ -1,13 +1,15 @@
 package com.exam.chillhub.controllers;
 
-import static com.exam.chillhub.ChillhubApplication.getResource;
-import com.exam.chillhub.models.*;
+import com.exam.chillhub.models.Filter;
+import com.exam.chillhub.models.Media;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
+
+import static com.exam.chillhub.ChillhubApplication.getResource;
 
 public class CategoryController {
     @FXML

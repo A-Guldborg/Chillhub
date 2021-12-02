@@ -1,14 +1,13 @@
 package com.exam.chillhub.test;
 
 import com.exam.chillhub.models.*;
-
-import com.exam.chillhub.models.Series;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FilterTests {
     private Filter filter;
@@ -20,7 +19,7 @@ public class FilterTests {
         for (int i = 1; i <= 5; i++) {
             Media m;
             if (i % 2 == 1) {
-                m = new Movie("Test" + i,"2018", 3.3, false, 0);
+                m = new Movie("Test" + i, "2018", 3.3, false, 0);
             } else {
                 m = new Series("Test" + i, "2018", 3.3, false, 0);
             }

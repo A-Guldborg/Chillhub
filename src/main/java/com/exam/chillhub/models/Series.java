@@ -1,8 +1,11 @@
 package com.exam.chillhub.models;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Series extends Media {
     private List<Season> seasons;
+
     public Series(String name, String year, double rating, boolean favorite, int idx) {
         super(MediaType.SERIES, name, year, rating, favorite, idx);
         this.seasons = new ArrayList<>();

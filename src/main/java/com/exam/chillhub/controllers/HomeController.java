@@ -1,13 +1,13 @@
 package com.exam.chillhub.controllers;
 
-import static com.exam.chillhub.ChillhubApplication.getResource;
-
 import com.exam.chillhub.database.MediaDB;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+
+import static com.exam.chillhub.ChillhubApplication.getResource;
 
 public class HomeController {
     @FXML

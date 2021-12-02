@@ -2,16 +2,12 @@ package com.exam.chillhub.test;
 
 import com.exam.chillhub.models.Media;
 import com.exam.chillhub.models.MediaType;
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class MediaTests {
-
-    class ConcreteMedia extends Media {
-        public ConcreteMedia(MediaType type, String name, String year, double rating, boolean favorite, int idx) {
-            super(type, name, year, rating, favorite, idx);
-        }
-    }
 
     @Test
     public void ctor() {
@@ -38,5 +34,11 @@ public class MediaTests {
         var image = media.getPoster();
         if (image != null)
             fail("Image is not null");
+    }
+
+    class ConcreteMedia extends Media {
+        public ConcreteMedia(MediaType type, String name, String year, double rating, boolean favorite, int idx) {
+            super(type, name, year, rating, favorite, idx);
+        }
     }
 }
