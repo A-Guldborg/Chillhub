@@ -12,6 +12,7 @@ public abstract class Media {
     private final StringProperty year;
     private final BooleanProperty favorite;
     private final int idx;
+    private final ObjectProperty<Image> poster;
 
     public Media(MediaType type, String name, String year, double rating, boolean favorite, int idx) {
         this.name = new SimpleStringProperty(name);
@@ -20,6 +21,16 @@ public abstract class Media {
         this.year = new SimpleStringProperty(year);
         this.favorite = new SimpleBooleanProperty(favorite);
         this.idx = idx;
+
+        this.poster = new SimpleObjectProperty<>();
+        {
+            var filename = getType().name().toLowerCase() + "/posters/" + getName() + ".jpg";
+            var res = openResource(filename);
+
+            if (res != null) {
+                poster.set(new Image(res));
+            }
+        }
     }
 
     public String getName() {
@@ -62,20 +73,7 @@ public abstract class Media {
         return favorite;
     }
 
-    /**
-     * Returnér det `Image` som tilhører mediet eller `null` hvis mediet ikke har et tilknyttet billede.
-     *
-     * @return `Image` tilhørende mediet.
-     * @throws RuntimeException hvis billedet ikke kunne åbnes.
-     */
-    public Image getPoster() {
-        var filename = getType().name().toLowerCase() + "/posters/" + getName() + ".jpg";
-        var res = openResource(filename);
-
-        if (res == null) {
-            return null;
-        }
-
-        return new Image(res);
+    public ObjectProperty<Image> posterProperty() {
+        return poster;
     }
 }

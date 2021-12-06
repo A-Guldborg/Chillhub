@@ -49,14 +49,15 @@ public class MediaController {
     }
 
     public void setModel(Media model) {
-        // Remove current listeners
+        // Remove current listeners and bindings
         if (this.model != null) {
             this.model.favoriteProperty().removeListener(favoriteListener);
+            poster.imageProperty().unbindBidirectional(this.model.posterProperty());
         }
 
         this.model = model;
 
-        poster.setImage(model.getPoster());
+        poster.imageProperty().bindBidirectional(model.posterProperty());
         model.favoriteProperty().addListener(favoriteListener);
         updateFavoriteBtn(model.getFavorite());
     }

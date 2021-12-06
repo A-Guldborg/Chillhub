@@ -21,17 +21,17 @@ public class MediaTests {
     }
 
     @Test
-    void getPoster() {
+    void posterProperty() {
         var media = new ConcreteMedia(MediaType.MOVIE, "ET", "2012", 1, false, 0);
-        var image = media.getPoster();
+        var image = media.posterProperty().get();
         if (image == null)
             fail("Image is null");
     }
 
     @Test
-    void getPoster_fail() {
+    void posterProperty_fail() {
         var media = new ConcreteMedia(MediaType.MOVIE, "Doesn't exist", "2012", 1, false, 0);
-        var image = media.getPoster();
+        var image = media.posterProperty().get();
         if (image != null)
             fail("Image is not null");
     }
