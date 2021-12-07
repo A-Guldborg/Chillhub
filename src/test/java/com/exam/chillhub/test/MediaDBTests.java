@@ -9,7 +9,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MediaDBTests {
-    private List<Media> media;
+    private Filter media;
     private Map<String, Filter> categories;
 
     @BeforeEach
@@ -29,6 +29,31 @@ public class MediaDBTests {
 
     @Test
     public void testAllMediaExists() {
-        assertEquals(200, media.size(), "Should read 200 media but reads: " + media.size() + " instead");
+        assertEquals(200, media.getFilteredData().size(), "Should read 200 media but reads: " + media.getFilteredData().size() + " instead");
+    }
+
+    @Test
+    public void testSearchQuery_star() {
+        String searchQuery = "StAr";
+        Filter searchfilter = MediaDB.instance.search(searchQuery);
+        List<Media> filteredData = searchfilter.getFilteredData();
+        assertEquals(filteredData.size(), 3, "Should find 3 movies but found " + filteredData.size());
+        for (Media m : filteredData) {
+            assertTrue(m.getName().toLowerCase().contains(searchQuery.toLowerCase()), "A media was found without star in the name: " + m.getName());
+        }
+    }
+
+    @Test
+    public void testSeveralWords() {
+        String searchQuery = "rain Man";
+        Filter searchFilter = MediaDB.instance.search(searchQuery);
+        List<Media> filteredData = searchFilter.getFilteredData();
+        assertEquals(filteredData.get(0).getName(), "Rain Man", "Should find Rain Man as the first move but found " + filteredData.get(0).getName() + " instead");
+        assertEquals(filteredData.size(), 6, "Expected 6 media but found " + filteredData.size() +  " media instead when searching for Rain Man");
+        for (Media m : filteredData) {
+            if (!(m.getName().toLowerCase().contains("rain") || m.getName().toLowerCase().contains("man"))) {
+                fail(m.getName() + " was found in the search query but does not contain rain or man");
+            }
+        }
     }
 }
