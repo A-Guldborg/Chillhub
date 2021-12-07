@@ -14,6 +14,7 @@ public class User {
     public User(String name) {
         this.name = name;
         this.favorites = new ArrayList<>();
+        generateColor();
     }
 
     public User(String name, String color) {

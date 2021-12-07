@@ -40,7 +40,9 @@ public class AccountDB {
                     User u = new User(userInfo[0], userInfo[1]);
                     String[] favorites = inputFile.nextLine().split(";");
                     for (String fav : favorites) {
-                        u.changeFavorite(media.get(Integer.parseInt(fav)));
+                        if (!fav.equals("")) {
+                            u.changeFavorite(media.get(Integer.parseInt(fav)));
+                        }
                     }
                     account.addUser(u);
                 }
@@ -69,7 +71,6 @@ public class AccountDB {
             FileWriter file = new FileWriter("src/main/resources/com/exam/chillhub/" + dbPath, false);
             System.out.println(savetxt);
             file.write(savetxt.toString());
-            System.out.println("Accounts saved!");
             file.close();
         } catch (IOException e) {
             System.out.println("Error when saving accounts");
@@ -78,6 +79,13 @@ public class AccountDB {
 
     public void addAccount(Account account) {
         AccountDB.add(account);
-        System.out.println("Added account: " + account.getUsername());
+    }
+
+    public void removeAccount(Account account) {
+        AccountDB.remove(account);
+    }
+
+    public List<Account> getAccounts() {
+        return this.AccountDB;
     }
 }
