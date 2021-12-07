@@ -12,11 +12,11 @@
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="usersBtn" mnemonicParsing="false" text="Users" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <HBox fx:id="btnsBox" alignment="CENTER" prefWidth="200.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox alignment="CENTER" prefWidth="200.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="homeBtn" mnemonicParsing="false" text="Home" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
+                  <Button mnemonicParsing="false" onAction="#homeAction" text="Home" />
+                  <Button mnemonicParsing="false" onAction="#moviesAction" text="Movies" />
+                  <Button mnemonicParsing="false" onAction="#seriesAction" text="Series" />
                   <ComboBox fx:id="categoryPicker" prefWidth="150.0" />
                </children>
             </HBox>

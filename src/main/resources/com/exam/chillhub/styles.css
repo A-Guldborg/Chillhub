@@ -1,0 +1,16 @@
+.media-btn {
+    -fx-background-color: transparent;
+}
+
+.media-btn:hover {
+    -fx-effect: innershadow(gaussian, mediumpurple, 2, 1, 0, 0);
+}
+
+.media-pane {
+    -fx-opacity: 0;
+    -fx-background-color:  linear-gradient(to top, black, transparent);
+}
+
+.media-pane:hover {
+    -fx-opacity: 1;
+}

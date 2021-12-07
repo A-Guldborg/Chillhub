@@ -18,7 +18,7 @@ public class HomeController {
         for (var filter : MediaDB.instance.getCategories().values()) {
             FXMLLoader fxmlLoader = new FXMLLoader(getResource("category.fxml"));
             categories.getChildren().add(fxmlLoader.load());
-            CategoryController controller = fxmlLoader.getController();
+            FilterController controller = fxmlLoader.getController();
             controller.setModel(filter);
         }
     }

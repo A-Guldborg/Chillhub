@@ -7,15 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 
 import static com.exam.chillhub.ChillhubApplication.openResource;
 
 public class MediaController {
     @FXML
     private ImageView poster;
-    @FXML
-    private AnchorPane popup;
     @FXML
     private Button playBtn;
     @FXML
@@ -66,15 +63,5 @@ public class MediaController {
     protected void onFavoriteAction() {
         // Set favorite to inverse of current value
         model.favoriteProperty().set(!model.getFavorite());
-    }
-
-    @FXML
-    protected void onMouseEntered() {
-        popup.setVisible(true);
-    }
-
-    @FXML
-    protected void onMouseExited() {
-        popup.setVisible(false);
     }
 }
