@@ -18,18 +18,18 @@ public class MediaDB {
         instance = new MediaDB();
     }
 
-    private List<Media> MediaDB;
+    private Filter MediaDB;
     private Map<String, Filter> Categories;
     private Scanner inputFile;
 
     private MediaDB() {
-        MediaDB = new ArrayList<>();
+        MediaDB = new Filter("All media");
         Categories = new HashMap<>();
         addMovies();
         addSeries();
     }
 
-    public List<Media> getDB() {
+    public Filter getDB() {
         return MediaDB;
     }
 
@@ -42,7 +42,7 @@ public class MediaDB {
         while (inputFile.hasNext()) {
             String[] input = inputFile.nextLine().split(";");
             Movie movie = new Movie(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',', '.')), false, MediaDB.size());
-            MediaDB.add(movie);
+            MediaDB.addToFilter(movie);
             addToCategories(movie, input[2].split(","));
         }
         inputFile.close();
@@ -63,7 +63,7 @@ public class MediaDB {
                     }
                 }
             }
-            MediaDB.add(series);
+            MediaDB.addToFilter(series);
         }
         inputFile.close();
     }
@@ -74,5 +74,38 @@ public class MediaDB {
             Categories.putIfAbsent(name, new Filter(name));
             Categories.get(name).addToFilter(media);
         }
+    }
+
+    /**
+     * Basic search returning a filter of all elements that has the searchstring in it's name.
+     * Filters can filter only specific media type, i.e. search for only movies with "king" in the name etc.
+     * @param searchstring String to be used when searching
+     * @return Filter of all media
+     */
+    public Filter search(String searchstring) {
+        String[] searchwords = searchstring.split(" ");
+        ArrayList<ArrayList<Media>> mediaoccurences = new ArrayList<ArrayList<Media>>();
+        for (String s : searchwords) {
+            mediaoccurences.add(new ArrayList<>());
+        }
+        for (Media m : MediaDB) {
+            String name = m.getName().toLowerCase();
+            int occ = 0;
+            for (String searchword : searchwords) {
+                if (name.contains(searchword.toLowerCase())) {
+                    occ++;
+                }
+            }
+            if (occ > 0) {
+                mediaoccurences.get(occ-1).add(m);
+            }
+        }
+        Filter filter = new Filter(searchstring);
+        for (int i = searchwords.length - 1; i >= 0; i--) {
+            for (Media m : mediaoccurences.get(i)) {
+                filter.addToFilter(m);
+            }
+        }
+        return filter;
     }
 }
