@@ -75,4 +75,37 @@ public class MediaDB {
             Categories.get(name).addToFilter(media);
         }
     }
+
+    /**
+     * Basic search returning a filter of all elements that has the searchstring in it's name.
+     * Filters can filter only specific media type, i.e. search for only movies with "king" in the name etc.
+     * @param searchstring String to be used when searching
+     * @return Filter of all media
+     */
+    private Filter search(String searchstring) {
+        String[] searchwords = searchstring.split(" ");
+        ArrayList<ArrayList<Media>> mediaoccurences = new ArrayList<ArrayList<Media>>();
+        for (String s : searchwords) {
+            mediaoccurences.add(new ArrayList<>());
+        }
+        for (Media m : MediaDB) {
+            String name = m.getName();
+            int occ = 0;
+            for (String searchword : searchwords) {
+                if (name.equals(searchword)) {
+                    occ++;
+                }
+            }
+            if (occ > 0) {
+                mediaoccurences.get(occ-1).add(m);
+            }
+        }
+        Filter filter = new Filter(searchstring);
+        for (int i = searchwords.length - 1; i >= 0; i--) {
+            for (Media m : mediaoccurences.get(i)) {
+                filter.addToFilter(m);
+            }
+        }
+        return filter;
+    }
 }
