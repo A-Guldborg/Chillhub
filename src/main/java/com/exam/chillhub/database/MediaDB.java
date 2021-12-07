@@ -41,7 +41,7 @@ public class MediaDB {
         inputFile = new Scanner(openResource(moviesPath));
         while (inputFile.hasNext()) {
             String[] input = inputFile.nextLine().split(";");
-            Movie movie = new Movie(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',', '.')), false, MediaDB.size());
+            Movie movie = new Movie(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',', '.')), false, MediaDB.getFilteredData().size());
             MediaDB.addToFilter(movie);
             addToCategories(movie, input[2].split(","));
         }
@@ -52,7 +52,7 @@ public class MediaDB {
         inputFile = new Scanner(openResource(seriesPath));
         while (inputFile.hasNext()) {
             String[] input = inputFile.nextLine().split(";");
-            Series series = new Series(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',', '.')), false, MediaDB.size());
+            Series series = new Series(input[0], input[1].trim(), Double.parseDouble(input[3].replace(',', '.')), false, MediaDB.getFilteredData().size());
             addToCategories(series, input[2].split(","));
             for (int i = 4; i < input.length; i++) {
                 String[] seasons = input[i].split(",");
@@ -88,7 +88,7 @@ public class MediaDB {
         for (String s : searchwords) {
             mediaoccurences.add(new ArrayList<>());
         }
-        for (Media m : MediaDB) {
+        for (Media m : MediaDB.getFilteredData()) {
             String name = m.getName().toLowerCase();
             int occ = 0;
             for (String searchword : searchwords) {

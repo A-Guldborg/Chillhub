@@ -10,7 +10,7 @@ import java.util.List;
 public class Filter {
     private final StringProperty title;
     private List<Media> filteredData;
-    private HashMap<MediaType, List<Media>> cachedLists;
+    private HashMap<MediaType, Filter> cachedLists;
 
     public Filter(String title) {
         this.title = new SimpleStringProperty(title);
@@ -28,7 +28,7 @@ public class Filter {
 
         // Tjekker om en cached liste er lavet over denne MediaType og tilføjer i så fald mediet
         if (cachedLists.containsKey(media.getType())) {
-            cachedLists.get(media.getType()).add(media);
+            cachedLists.get(media.getType()).addToFilter(media);
         }
     }
 
@@ -51,20 +51,20 @@ public class Filter {
      * @param type MediaType enum som filtreringsgrundlaget
      * @return List<Media> Listen over den filtrerede søgning
      */
-    public List<Media> getFilteredType(MediaType type) {
+    public Filter getFilteredType(MediaType type) {
         // Tjekker om listen allerede er skabt
         if (cachedLists.containsKey(type)) {
             return cachedLists.get(type);
         } else {
             // Alternativt søger den igennem filteret og tilføjer de enkelte elementer til en List der caches i et HashMap
-            List<Media> filteredByType = new ArrayList<>();
+            Filter filterByType = new Filter(this.title + " " + type);
             for (Media media : filteredData) {
                 if (media.getType() == type) {
-                    filteredByType.add(media);
+                    filterByType.addToFilter(media);
                 }
             }
-            cachedLists.put(type, filteredByType);
-            return filteredByType;
+            cachedLists.put(type, filterByType);
+            return filterByType;
         }
     }
 }

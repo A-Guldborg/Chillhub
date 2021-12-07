@@ -1,6 +1,7 @@
 package com.exam.chillhub.database;
 
 import com.exam.chillhub.models.Account;
+import com.exam.chillhub.models.Filter;
 import com.exam.chillhub.models.Media;
 import com.exam.chillhub.models.User;
 
@@ -20,7 +21,7 @@ public class AccountDB {
         instance = new AccountDB();
     }
 
-    private final List<Media> media;
+    private final Filter media;
     private List<Account> AccountDB;
 
     private AccountDB() {
@@ -41,7 +42,7 @@ public class AccountDB {
                     String[] favorites = inputFile.nextLine().split(";");
                     for (String fav : favorites) {
                         if (!fav.equals("")) {
-                            u.changeFavorite(media.get(Integer.parseInt(fav)));
+                            u.changeFavorite(media.getFilteredData().get(Integer.parseInt(fav)));
                         }
                     }
                     account.addUser(u);
