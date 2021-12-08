@@ -9,7 +9,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MediaDBTests {
-    private List<Media> media;
+    private Filter media;
     private Map<String, Filter> categories;
 
     @BeforeEach
@@ -29,6 +29,6 @@ public class MediaDBTests {
 
     @Test
     public void testAllMediaExists() {
-        assertEquals(200, media.size(), "Should read 200 media but reads: " + media.size() + " instead");
+        assertEquals(200, media.getFilteredData().size(), "Should read 200 media but reads: " + media.getFilteredData().size() + " instead");
     }
 }
