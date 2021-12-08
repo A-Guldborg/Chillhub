@@ -3,12 +3,13 @@
 }
 
 .media-btn:hover {
-    -fx-effect: innershadow(gaussian, mediumpurple, 2, 1, 0, 0);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
 }
 
 .media-pane {
     -fx-opacity: 0;
-    -fx-background-color:  linear-gradient(to top, black, transparent);
+    -fx-background-color: linear-gradient(to top, black, transparent);
 }
 
 .media-pane:hover {

@@ -36,6 +36,10 @@ public class Filter {
         return this.title.get();
     }
 
+    public void setTitle(String title) {
+        this.title.set(title);
+    }
+
     public StringProperty titleProperty() {
         return this.title;
     }

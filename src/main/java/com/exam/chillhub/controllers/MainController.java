@@ -79,9 +79,11 @@ public class MainController {
             setView(viewCache.get(type));
         else if (type == MediaType.ANY)
             loadView("home-view.fxml");
-        else
-            loadFilter(MediaDB.instance.getDB().getFilteredType(type));
-
+        else {
+            Filter filter = MediaDB.instance.getDB().getFilteredType(type);
+            filter.setTitle(type.toString());
+            loadFilter(filter);
+        }
     }
 
     private void resetCategory() {
