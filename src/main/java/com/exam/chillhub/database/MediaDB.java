@@ -1,9 +1,6 @@
 package com.exam.chillhub.database;
 
-import com.exam.chillhub.models.Filter;
-import com.exam.chillhub.models.Media;
-import com.exam.chillhub.models.Movie;
-import com.exam.chillhub.models.Series;
+import com.exam.chillhub.models.*;
 
 import java.util.*;
 
@@ -19,7 +16,7 @@ public class MediaDB {
     }
 
     private Filter MediaDB;
-    private Map<String, Filter> Categories;
+    private Map<CategoryType, Filter> Categories;
     private Scanner inputFile;
 
     private MediaDB() {
@@ -33,7 +30,7 @@ public class MediaDB {
         return MediaDB;
     }
 
-    public Map<String, Filter> getCategories() {
+    public Map<CategoryType, Filter> getCategories() {
         return Categories;
     }
 
@@ -70,9 +67,9 @@ public class MediaDB {
 
     private void addToCategories(Media media, String[] categories) {
         for (String category : categories) {
-            String name = category.trim();
-            Categories.putIfAbsent(name, new Filter(name));
-            Categories.get(name).addToFilter(media);
+            var cat = CategoryType.valueOf(category.trim().replace("-", "").toUpperCase());
+            Categories.putIfAbsent(cat, new Filter(cat.toString()));
+            Categories.get(cat).addToFilter(media);
         }
     }
 
