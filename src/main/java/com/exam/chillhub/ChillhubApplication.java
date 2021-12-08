@@ -1,5 +1,6 @@
 package com.exam.chillhub;
 
+import com.exam.chillhub.database.AccountDB;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -48,5 +49,11 @@ public class ChillhubApplication extends Application {
         stage.setTitle("Chillhub");
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void stop() {
+        // When window is closed, this makes sure to save all accounts before closing the program
+        AccountDB.instance.saveAccounts();
     }
 }

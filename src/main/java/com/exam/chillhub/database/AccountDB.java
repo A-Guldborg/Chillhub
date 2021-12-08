@@ -78,8 +78,20 @@ public class AccountDB {
         }
     }
 
-    public void addAccount(Account account) {
+    /**
+     *
+     * @param account Account to be added
+     * @return True if account creation succeeds, false if username is already in use
+     */
+    public boolean addAccount(Account account) {
+        for (Account acc : AccountDB) {
+            if (acc.getUsername().equals(account.getUsername())) {
+                // Account med samme username findes allerede
+                return false;
+            }
+        }
         AccountDB.add(account);
+        return true;
     }
 
     public void removeAccount(Account account) {
