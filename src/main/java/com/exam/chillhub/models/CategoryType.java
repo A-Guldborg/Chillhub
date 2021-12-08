@@ -1,6 +1,7 @@
 package com.exam.chillhub.models;
 
 public enum CategoryType {
+    NONE("No category"),
     CRIME("Crime"),
     DRAMA("Drama"),
     BIOGRAPHY("Biography"),

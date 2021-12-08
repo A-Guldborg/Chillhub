@@ -17,7 +17,7 @@
                   <Button mnemonicParsing="false" onAction="#homeAction" text="Home" />
                   <Button mnemonicParsing="false" onAction="#moviesAction" text="Movies" />
                   <Button mnemonicParsing="false" onAction="#seriesAction" text="Series" />
-                  <ComboBox fx:id="categoryPicker" prefWidth="150.0" />
+                  <ComboBox fx:id="categoryPicker" onAction="#categorySelect" prefWidth="150.0" />
                </children>
             </HBox>
             <AnchorPane AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

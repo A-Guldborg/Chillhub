@@ -6,6 +6,7 @@ import com.exam.chillhub.models.Filter;
 import com.exam.chillhub.models.MediaType;
 import com.exam.chillhub.models.User;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -52,6 +53,10 @@ public class MainController {
     }
 
     private FXMLLoader loadView(String name) {
+        return loadView(name, true);
+    }
+
+    private FXMLLoader loadView(String name, boolean cache) {
         var loader = new FXMLLoader(getResource(name));
         Node node;
         try {
@@ -60,14 +65,20 @@ public class MainController {
             throw new RuntimeException("Error loading fxml");
         }
 
-        viewCache.put(this.type, node);
+        if (cache)
+            viewCache.put(this.type, node);
+
         setView(node);
 
         return loader;
     }
 
     private void loadFilter(Filter filter) {
-        var loader = loadView("filter-view.fxml");
+        loadFilter(filter, true);
+    }
+
+    private void loadFilter(Filter filter, boolean cache) {
+        var loader = loadView("filter-view.fxml", cache);
         FilterController controller = loader.getController();
         controller.setModel(filter);
     }
@@ -87,21 +98,39 @@ public class MainController {
     }
 
     private void resetCategory() {
-        categoryPicker.promptTextProperty().set("Select category");
+        categoryPicker.setValue(CategoryType.NONE);
     }
 
     @FXML
     private void homeAction() {
         setType(MediaType.ANY);
+        resetCategory();
     }
 
     @FXML
     private void moviesAction() {
         setType(MediaType.MOVIE);
+        resetCategory();
     }
 
     @FXML
     private void seriesAction() {
         setType(MediaType.SERIES);
+        resetCategory();
+    }
+
+    @FXML
+    public void categorySelect() {
+        if (categoryPicker.getValue() == CategoryType.NONE) {
+            setType(type);
+            return;
+        }
+
+        var filter = MediaDB.instance.getCategories().get(categoryPicker.getValue());
+
+        if (type != MediaType.ANY)
+            filter = filter.getFilteredType(type);
+
+        loadFilter(filter, false);
     }
 }

@@ -2,7 +2,7 @@ package com.exam.chillhub.models;
 
 public enum MediaType {
     ANY("Any"),
-    MOVIE("Movie"),
+    MOVIE("Movies"),
     SERIES("Series");
 
     private String name;

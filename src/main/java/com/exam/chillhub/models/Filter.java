@@ -61,7 +61,7 @@ public class Filter {
             return cachedLists.get(type);
         } else {
             // Alternativt søger den igennem filteret og tilføjer de enkelte elementer til en List der caches i et HashMap
-            Filter filterByType = new Filter(this.title + " " + type);
+            Filter filterByType = new Filter(getTitle() + " " + type);
             for (Media media : filteredData) {
                 if (media.getType() == type) {
                     filterByType.addToFilter(media);
