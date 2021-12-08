@@ -62,7 +62,7 @@ public class AccountDB {
             savetxt.append(acc.getUsername() + ";" + acc.getPassword() + ";" + users.size() + ";\n");
             for (User u : users) {
                 savetxt.append(u.getName() + ";" + u.getColorString() + ";\n");
-                for (Media m : u.getFavorites()) {
+                for (Media m : u.getFavorites().getFilteredData()) {
                     savetxt.append(m.getIdx() + ";");
                 }
                 savetxt.append("\n");

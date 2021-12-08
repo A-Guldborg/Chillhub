@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Filter {
     private final StringProperty title;
-    private List<Media> filteredData;
-    private HashMap<MediaType, Filter> cachedLists;
+    private final List<Media> filteredData;
+    private final HashMap<MediaType, Filter> cachedLists;
 
     public Filter(String title) {
         this.title = new SimpleStringProperty(title);

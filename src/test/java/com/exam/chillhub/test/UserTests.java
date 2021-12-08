@@ -14,7 +14,7 @@ public class UserTests {
     public void ctorName() {
         var user = new User("Test");
         assertEquals(user.getName(), "Test");
-        assertEquals(user.getFavorites().size(), 0);
+        assertEquals(user.getFavorites().getFilteredData().size(), 0);
     }
 
     @Test
@@ -22,7 +22,7 @@ public class UserTests {
         var user = new User("Test", "red");
         assertEquals(user.getName(), "Test");
         assertEquals(user.getColor(), Color.RED);
-        assertEquals(user.getFavorites().size(), 0);
+        assertEquals(user.getFavorites().getFilteredData().size(), 0);
     }
 
     @Test
@@ -30,13 +30,13 @@ public class UserTests {
         var movie = new Movie("ET", "2012", 1, false, 0);
         var series = new Series("24", "2012", 1, false, 0);
         var user = new User("Test");
-        assertEquals(user.getFavorites().size(), 0);
+        assertEquals(user.getFavorites().getFilteredData().size(), 0);
         user.changeFavorite(movie);
-        assertEquals(user.getFavorites().size(), 1);
+        assertEquals(user.getFavorites().getFilteredData().size(), 1);
         user.changeFavorite(series);
-        assertEquals(user.getFavorites().size(), 2);
+        assertEquals(user.getFavorites().getFilteredData().size(), 2);
         user.changeFavorite(series);
-        assertEquals(user.getFavorites().size(), 1);
+        assertEquals(user.getFavorites().getFilteredData().size(), 1);
     }
 
     @Test

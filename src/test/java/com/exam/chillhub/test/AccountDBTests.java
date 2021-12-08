@@ -29,8 +29,8 @@ public class AccountDBTests {
                 bool = true;
                 assertEquals(acc.getUsers().size(), 2, "admin should have two users. Currently has " + acc.getUsers().size());
                 List<User> users = acc.getUsers();
-                assertEquals(users.get(0).getFavorites().size(), 3);
-                assertEquals(users.get(1).getFavorites().size(), 5);
+                assertEquals(users.get(0).getFavorites().getFilteredData().size(), 3);
+                assertEquals(users.get(1).getFavorites().getFilteredData().size(), 5);
                 break;
             }
         }

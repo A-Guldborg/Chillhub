@@ -6,7 +6,6 @@ import com.exam.chillhub.models.Filter;
 import com.exam.chillhub.models.MediaType;
 import com.exam.chillhub.models.User;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
