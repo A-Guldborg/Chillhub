@@ -28,8 +28,6 @@ public class MainController {
     @FXML
     private TextField searchInput;
     @FXML
-    private Button searchBtn;
-    @FXML
     private AnchorPane mainPane;
 
     private User model;
@@ -131,6 +129,12 @@ public class MainController {
         if (type != MediaType.ANY)
             filter = filter.getFilteredType(type);
 
+        loadFilter(filter, false);
+    }
+
+    @FXML
+    public void searchAction() {
+        var filter = MediaDB.instance.search(searchInput.textProperty().get());
         loadFilter(filter, false);
     }
 }

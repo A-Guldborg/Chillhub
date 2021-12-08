@@ -22,8 +22,8 @@
             </HBox>
             <AnchorPane AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TextField fx:id="searchInput" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="0.0" />
-                  <Button fx:id="searchBtn" mnemonicParsing="false" text="Search" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TextField fx:id="searchInput" onAction="#searchAction" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="0.0" />
+                  <Button mnemonicParsing="false" onAction="#searchAction" text="Search" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </children>
