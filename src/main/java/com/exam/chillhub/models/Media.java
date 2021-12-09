@@ -13,6 +13,7 @@ public abstract class Media {
     private final BooleanProperty favorite;
     private final int idx;
     private final ObjectProperty<Image> poster;
+    private final StringProperty titleProperty;
 
     public Media(MediaType type, String name, String year, double rating, boolean favorite, int idx) {
         this.name = new SimpleStringProperty(name);
@@ -21,6 +22,7 @@ public abstract class Media {
         this.year = new SimpleStringProperty(year);
         this.favorite = new SimpleBooleanProperty(favorite);
         this.idx = idx;
+        this.titleProperty = new SimpleStringProperty(name + " (" + rating + ")");
 
         this.poster = new SimpleObjectProperty<>();
         {
@@ -75,5 +77,9 @@ public abstract class Media {
 
     public ObjectProperty<Image> posterProperty() {
         return poster;
+    }
+
+    public StringProperty titleProperty() {
+        return this.titleProperty;
     }
 }

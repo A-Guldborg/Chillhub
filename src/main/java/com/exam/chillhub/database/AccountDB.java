@@ -70,7 +70,6 @@ public class AccountDB {
         }
         try {
             FileWriter file = new FileWriter("src/main/resources/com/exam/chillhub/" + dbPath, false);
-            System.out.println(savetxt);
             file.write(savetxt.toString());
             file.close();
         } catch (IOException e) {

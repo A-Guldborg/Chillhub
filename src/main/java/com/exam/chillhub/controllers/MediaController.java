@@ -12,13 +12,13 @@ import static com.exam.chillhub.ChillhubApplication.openResource;
 
 public class MediaController {
     @FXML
-    private ImageView poster;
+    protected ImageView poster;
     @FXML
-    private Button playBtn;
+    protected Button playBtn;
     @FXML
-    private Button favoriteBtn;
+    protected Button favoriteBtn;
 
-    private Media model;
+    protected Media model;
     private ChangeListener<Boolean> favoriteListener;
     private ImageView checkImg;
     private ImageView plusImg;
