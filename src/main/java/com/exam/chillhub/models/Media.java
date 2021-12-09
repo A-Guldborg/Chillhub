@@ -3,6 +3,9 @@ package com.exam.chillhub.models;
 import javafx.beans.property.*;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.exam.chillhub.ChillhubApplication.openResource;
 
 public abstract class Media {
@@ -14,6 +17,7 @@ public abstract class Media {
     private final int idx;
     private final ObjectProperty<Image> poster;
     private final StringProperty titleProperty;
+    private List<CategoryType> categories;
 
     public Media(MediaType type, String name, String year, double rating, boolean favorite, int idx) {
         this.name = new SimpleStringProperty(name);
@@ -23,6 +27,7 @@ public abstract class Media {
         this.favorite = new SimpleBooleanProperty(favorite);
         this.idx = idx;
         this.titleProperty = new SimpleStringProperty(name + " (" + rating + ")");
+        this.categories = new ArrayList<>();
 
         this.poster = new SimpleObjectProperty<>();
         {
@@ -81,5 +86,13 @@ public abstract class Media {
 
     public StringProperty titleProperty() {
         return this.titleProperty;
+    }
+
+    public void addCategory(CategoryType c) {
+        this.categories.add(c);
+    }
+
+    public List<CategoryType> getCategories() {
+        return this.categories;
     }
 }

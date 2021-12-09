@@ -1,17 +1,20 @@
 package com.exam.chillhub.controllers;
 
 import com.exam.chillhub.database.MediaDB;
-import com.exam.chillhub.models.Media;
-import com.exam.chillhub.models.Season;
-import com.exam.chillhub.models.Series;
+import com.exam.chillhub.models.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+
+import static com.exam.chillhub.ChillhubApplication.getResource;
 
 public class MediaViewController extends MediaController {
     @FXML
@@ -22,8 +25,6 @@ public class MediaViewController extends MediaController {
 
     @FXML
     private Accordion seasonsPane;
-
-    private AnchorPane anchor;
 
     @FXML
     private VBox contentBox;
@@ -51,7 +52,6 @@ public class MediaViewController extends MediaController {
             tPane.setContent(vbox);
             seasonsPane.getPanes().add(tPane);
         }
-        // pane.setContent(seasonsPane);
     }
 
     public void setModel(Media model) {
@@ -60,5 +60,19 @@ public class MediaViewController extends MediaController {
         }
         super.setModel(model);
         this.title.textProperty().bindBidirectional(model.titleProperty());
+
+        // Todo add filter view for each category
+        Map<CategoryType, Filter> categories = MediaDB.instance.getCategories();
+        List<CategoryType> mediaCategories = model.getCategories();
+        for (CategoryType cat : mediaCategories) {
+            FXMLLoader filterview = new FXMLLoader(getResource("category.fxml"));
+            try {
+                contentBox.getChildren().add(filterview.load());
+            } catch (IOException e) {
+                throw new RuntimeException("Error loading fxml");
+            }
+            FilterController controller = filterview.getController();
+            controller.setModel(categories.get(cat));
+        }
     }
 }

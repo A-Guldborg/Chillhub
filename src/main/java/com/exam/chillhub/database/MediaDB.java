@@ -68,6 +68,7 @@ public class MediaDB {
     private void addToCategories(Media media, String[] categories) {
         for (String category : categories) {
             var cat = CategoryType.valueOf(category.trim().replace("-", "").toUpperCase());
+            media.addCategory(cat);
             Categories.putIfAbsent(cat, new Filter(cat.toString()));
             Categories.get(cat).addToFilter(media);
         }

@@ -11,22 +11,22 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exam.chillhub.controllers.MediaViewController">
    <children>
-      <ImageView fx:id="poster" fitHeight="209.0" fitWidth="140.0" layoutX="10.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="title" layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="580.0" text="Star Wars (9.9)">
+      <ImageView fx:id="poster" fitHeight="209.0" fitWidth="140.0" layoutX="10.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="40.0" />
+      <Label fx:id="title" layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="580.0" text="title" AnchorPane.bottomAnchor="361.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="favoriteBtn" layoutX="10.0" layoutY="259.0" mnemonicParsing="false" />
-      <Button fx:id="playBtn" layoutX="96.0" layoutY="259.0" mnemonicParsing="false" />
-      <ScrollPane fx:id="pane" hbarPolicy="NEVER" layoutX="167.0" layoutY="40.0" prefHeight="360.0" prefWidth="433.0">
+      <Button fx:id="favoriteBtn" layoutX="10.0" layoutY="259.0" mnemonicParsing="false" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="536.0" AnchorPane.topAnchor="259.0" />
+      <Button fx:id="playBtn" layoutX="96.0" layoutY="259.0" mnemonicParsing="false" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="259.0" />
+      <ScrollPane fx:id="pane" hbarPolicy="NEVER" layoutX="167.0" layoutY="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="167.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0">
                <children>
-                  <VBox fx:id="contentBox">
+                  <VBox fx:id="contentBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Accordion fx:id="seasonsPane" prefWidth="433.0" />
-                        <Label prefHeight="29.0" prefWidth="166.0" text="Related media">
+                        <Accordion fx:id="seasonsPane" />
+                        <Label text="Related media">
                            <font>
                               <Font size="24.0" />
                            </font>
