@@ -22,7 +22,7 @@
             <TextField fx:id="username" maxWidth="200.0" promptText="Username" />
             <PasswordField fx:id="password" maxWidth="200.0" promptText="Password" />
             <Button maxWidth="200.0" mnemonicParsing="false" onAction="#loginAction" prefWidth="200.0" style="-fx-background-color: gold;" text="Log in" />
-            <Button fx:id="registerAction" maxWidth="200.0" mnemonicParsing="false" prefWidth="200.0" text="Register" />
+            <Button fx:id="registerAction" maxWidth="200.0" mnemonicParsing="false" onAction="#registerAction" prefWidth="200.0" text="Register" />
          </children>
       </VBox>
    </children>

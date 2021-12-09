@@ -1,5 +1,7 @@
 package com.exam.chillhub.models;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 public class User {
-    private String name;
+    private StringProperty name;
     private Color color;
     private Filter favorites;
 
@@ -16,7 +18,7 @@ public class User {
     }
 
     public User(String name, String color) {
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
         this.color = Color.valueOf(color);
         this.favorites = new Filter("Favorites");
     }
@@ -34,11 +36,15 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
+    }
+
+    public StringProperty nameProperty() {
+        return name;
     }
 
     public Color getColor() {
