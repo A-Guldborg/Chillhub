@@ -1,28 +1,23 @@
 package com.exam.chillhub.controllers;
 
-import com.exam.chillhub.database.AccountDB;
+import com.exam.chillhub.enums.View;
 import com.exam.chillhub.models.User;
+import com.exam.chillhub.models.Account;
+import com.exam.chillhub.models.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import com.exam.chillhub.models.Account;
 import java.io.IOException;
 import javafx.scene.layout.HBox;
-import javafx.scene.control.TextField;
 
 import static com.exam.chillhub.ChillhubApplication.getResource;
-public class AccountController {
+
+public class AccountViewController implements Navigator {
     @FXML
     private HBox users;
 
+    private Navigable navigable;
     private Account model;
-
-    @FXML
-    private TextField username;
-
-    public void initialize() {
-        setModel(AccountDB.instance.getAccounts().get(0));
-    }
 
     public void setModel(Account model) {
         this.model = model;
@@ -33,20 +28,14 @@ public class AccountController {
     }
 
     private void addUser(User user) {
-        FXMLLoader fxmlloader = new FXMLLoader(getResource("User-view.fxml"));
-        try {
-            users.getChildren().add(fxmlloader.load());
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-
-        UserController controller = fxmlloader.getController();
-        controller.setModel(user);
+        var loaded = View.User.load();
+        users.getChildren().add(loaded.node());
+        UserController controller = loaded.loader().getController();
+        controller.onNavigateTo(navigable, user);
     }
 
     @FXML
     public void addUserAction() {
-        //username.visibleProperty().set(true);
         var newUser = new User("New user");
         model.addUser(newUser);
         addUser(newUser);
@@ -55,6 +44,17 @@ public class AccountController {
     @FXML
     public void deleteUserAction() {
 
+    }
+
+    @Override
+    public void onNavigateTo(Navigable navigable, Model model) {
+        this.navigable = navigable;
+        setModel((Account) model);
+    }
+
+    @FXML
+    public void onLogOut() {
+        navigable.navigateBack();
     }
 }
 

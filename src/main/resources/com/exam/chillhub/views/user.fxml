@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="217.0" prefWidth="171.0"
+            style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%,  #dd5e89,  #f7bb97);"
+            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.exam.chillhub.controllers.UserController">
+   <ImageView fitHeight="150.0" fitWidth="206.0" layoutX="28.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true"
+              AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="8.0">
+      <Image url="@../Avatar.png"/>
+   </ImageView>
+   <Pane onMouseClicked="#onClick" prefHeight="200.0" prefWidth="200.0" styleClass="user-pane"
+         stylesheets="@../styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+   <TextField fx:id="DefaultUsernameUser" layoutX="27.0" layoutY="177.0" promptText="User"
+              AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0"
+              AnchorPane.topAnchor="175.0"/>
+</AnchorPane>

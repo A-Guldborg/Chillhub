@@ -1,6 +1,6 @@
 package com.exam.chillhub.test;
 
-import com.exam.chillhub.models.MediaType;
+import com.exam.chillhub.enums.MediaType;
 import com.exam.chillhub.models.Movie;
 import org.junit.jupiter.api.Test;
 

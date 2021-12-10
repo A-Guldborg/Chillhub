@@ -1,7 +1,7 @@
 package com.exam.chillhub.test;
 
 import com.exam.chillhub.database.MediaDB;
-import com.exam.chillhub.models.CategoryType;
+import com.exam.chillhub.enums.CategoryType;
 import com.exam.chillhub.models.Filter;
 import com.exam.chillhub.models.Media;
 import org.junit.jupiter.api.BeforeEach;

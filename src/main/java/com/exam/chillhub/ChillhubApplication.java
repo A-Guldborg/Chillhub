@@ -1,8 +1,9 @@
 package com.exam.chillhub;
 
 import com.exam.chillhub.database.AccountDB;
+import com.exam.chillhub.enums.View;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -43,9 +44,9 @@ public class ChillhubApplication extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getResource("media-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+    public void start(Stage stage) {
+        var node = View.MainView.load().node();
+        Scene scene = new Scene((Parent) node);
         stage.setTitle("Chillhub");
         stage.setScene(scene);
         stage.show();

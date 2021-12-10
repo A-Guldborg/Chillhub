@@ -1,7 +1,7 @@
 package com.exam.chillhub.test;
 
 import com.exam.chillhub.models.Media;
-import com.exam.chillhub.models.MediaType;
+import com.exam.chillhub.enums.MediaType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

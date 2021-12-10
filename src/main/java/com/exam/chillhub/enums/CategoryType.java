@@ -1,4 +1,4 @@
-package com.exam.chillhub.models;
+package com.exam.chillhub.enums;
 
 public enum CategoryType {
     NONE("No category"),

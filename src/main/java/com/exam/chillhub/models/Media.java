@@ -1,5 +1,7 @@
 package com.exam.chillhub.models;
 
+import com.exam.chillhub.enums.CategoryType;
+import com.exam.chillhub.enums.MediaType;
 import javafx.beans.property.*;
 import javafx.scene.image.Image;
 
@@ -8,7 +10,7 @@ import java.util.List;
 
 import static com.exam.chillhub.ChillhubApplication.openResource;
 
-public abstract class Media {
+public abstract class Media extends Model {
     private final StringProperty name;
     private final MediaType type;
     private final DoubleProperty rating;

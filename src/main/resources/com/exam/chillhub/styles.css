@@ -7,11 +7,18 @@
     -fx-scale-y: 1.1;
 }
 
-.media-pane {
+.media-pane, .user-pane {
     -fx-opacity: 0;
+}
+
+.media-pane {
     -fx-background-color: linear-gradient(to top, black, transparent);
 }
 
-.media-pane:hover {
+.user-pane {
+    -fx-background-color: rgba(1, 1, 1, 0.2);
+}
+
+.media-pane:hover, .user-pane:hover {
     -fx-opacity: 1;
 }

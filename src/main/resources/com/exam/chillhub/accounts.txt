@@ -7,3 +7,14 @@ New user;0x2fb11fff;
 
 New user;0x66f98eff;
 
+StringProperty [bean: TextField[id=username, styleClass=text-input text-field], name: text, value: admin2];StringProperty [bean: PasswordField[id=password, styleClass=text-input text-field password-field], name: text, value: admin];2;
+New user;0xae5eb4ff;
+
+New user;0x68865cff;
+
+StringProperty [bean: TextField[id=username, styleClass=text-input text-field], name: text, value: a];StringProperty [bean: PasswordField[id=password, styleClass=text-input text-field password-field], name: text, value: a];1;
+New user;0x05c364ff;
+
+a;a;1;
+New user;0x186226ff;
+

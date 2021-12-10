@@ -1,24 +1,21 @@
 package com.exam.chillhub.controllers;
 
+import com.exam.chillhub.enums.View;
 import com.exam.chillhub.models.Filter;
 import com.exam.chillhub.models.Media;
+import com.exam.chillhub.models.Model;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
-import java.io.IOException;
 
-import static com.exam.chillhub.ChillhubApplication.getResource;
-
-public class FilterController {
+public class FilterViewController implements Navigator {
     @FXML
     private Label title;
     @FXML
     private Pane media;
 
+    private Navigable navigable;
     private Filter model;
 
     public void setModel(Filter model) {
@@ -34,14 +31,16 @@ public class FilterController {
 
         // Load all media
         for (Media m : model.getFilteredData()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getResource("media.fxml"));
-            try {
-                media.getChildren().add(fxmlLoader.load());
-            } catch (IOException e) {
-                throw new RuntimeException("Error loading fxml");
-            }
-            MediaController controller = fxmlLoader.getController();
-            controller.setModel(m);
+            var loaded = View.Media.load();
+            media.getChildren().add(loaded.node());
+            MediaController controller = loaded.loader().getController();
+            controller.onNavigateTo(navigable, m);
         }
+    }
+
+    @Override
+    public void onNavigateTo(Navigable navigable, Model model) {
+        this.navigable = navigable;
+        setModel((Filter) model);
     }
 }

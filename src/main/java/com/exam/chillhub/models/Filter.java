@@ -1,5 +1,6 @@
 package com.exam.chillhub.models;
 
+import com.exam.chillhub.enums.MediaType;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -7,15 +8,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Filter {
+public class Filter extends Model {
     private final StringProperty title;
     private final List<Media> filteredData;
     private final HashMap<MediaType, Filter> cachedLists;
+    private final HashMap<String, Filter> cachedSearches;
 
     public Filter(String title) {
         this.title = new SimpleStringProperty(title);
         filteredData = new ArrayList<>();
         cachedLists = new HashMap<>();
+        cachedSearches = new HashMap<>();
     }
 
     /**
@@ -70,5 +73,43 @@ public class Filter {
             cachedLists.put(type, filterByType);
             return filterByType;
         }
+    }
+
+    /**
+     * Basic search returning a filter of all elements that has the searchstring in it's name.
+     * Filters can filter only specific media type, i.e. search for only movies with "king" in the name etc.
+     * @param searchstring String to be used when searching
+     * @return Filter of all media
+     */
+    public Filter search(String searchstring) {
+        if (cachedSearches.containsKey(searchstring))
+            return cachedSearches.get(searchstring);
+
+        String[] searchwords = searchstring.split(" ");
+        ArrayList<ArrayList<Media>> mediaoccurences = new ArrayList<ArrayList<Media>>();
+        for (String s : searchwords) {
+            mediaoccurences.add(new ArrayList<>());
+        }
+        for (Media m : getFilteredData()) {
+            String name = m.getName().toLowerCase();
+            int occ = 0;
+            for (String searchword : searchwords) {
+                if (name.contains(searchword.toLowerCase())) {
+                    occ++;
+                }
+            }
+            if (occ > 0) {
+                mediaoccurences.get(occ-1).add(m);
+            }
+        }
+        Filter filter = new Filter(searchstring);
+        for (int i = searchwords.length - 1; i >= 0; i--) {
+            for (Media m : mediaoccurences.get(i)) {
+                filter.addToFilter(m);
+            }
+        }
+
+        cachedSearches.put(searchstring, filter);
+        return filter;
     }
 }

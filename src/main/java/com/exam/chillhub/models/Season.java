@@ -3,7 +3,7 @@ package com.exam.chillhub.models;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Season {
+public class Season extends Model {
     private final int number;
     private final int episodes;
     private final StringProperty title;

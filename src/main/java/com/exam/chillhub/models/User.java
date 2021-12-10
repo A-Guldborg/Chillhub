@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class User {
+public class User extends Model {
     private StringProperty name;
     private Color color;
     private Filter favorites;

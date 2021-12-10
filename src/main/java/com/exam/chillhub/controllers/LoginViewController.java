@@ -1,14 +1,15 @@
 package com.exam.chillhub.controllers;
 
 import com.exam.chillhub.database.AccountDB;
+import com.exam.chillhub.enums.View;
 import com.exam.chillhub.models.Account;
-import javafx.event.ActionEvent;
+import com.exam.chillhub.models.Model;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class LoginController {
+public class LoginViewController implements Navigator {
     @FXML
     public TextField username;
     @FXML
@@ -18,15 +19,19 @@ public class LoginController {
     @FXML
     public Label UsernameAlreadyTaken;
 
+    private Navigable navigable;
+
     @FXML
-    public void loginAction(ActionEvent actionEvent) {
+    public void loginAction() {
+        UsernameAlreadyTaken.visibleProperty().setValue(false);
+        WrongPasswordOrUsername.visibleProperty().setValue(false);
+
         boolean found = false;
         for (var acc : AccountDB.instance.getAccounts()) {
             if (acc.getUsername().equals(username.textProperty().get())){
                 found = true;
                 if (acc.checkPassword(password.textProperty().get())){
-
-                    // todo: open user
+                    navigable.navigateTo(View.AccountView, acc);
                 } else {
                     WrongPasswordOrUsername.visibleProperty().setValue(true);
                     break;
@@ -37,16 +42,26 @@ public class LoginController {
         if (!found)
             WrongPasswordOrUsername.visibleProperty().setValue(true);
     }
-    public void registerAction(ActionEvent actionEvent) {
+
+    @FXML
+    public void registerAction() {
+        UsernameAlreadyTaken.visibleProperty().setValue(false);
+        WrongPasswordOrUsername.visibleProperty().setValue(false);
+
         if (username != null && password != null) {
-            boolean successfulCreation = AccountDB.instance.addAccount(new Account(username.textProperty().toString(), password.textProperty().toString()));
+            var newAcc = new Account(username.textProperty().get(), password.textProperty().get());
+            boolean successfulCreation = AccountDB.instance.addAccount(newAcc);
             if (successfulCreation) {
-                // todo: open user, since no need to login again
+                navigable.navigateTo(View.AccountView, newAcc);
             } else {
                 UsernameAlreadyTaken.visibleProperty().setValue(true);
             }
         }
     }
 
+    @Override
+    public void onNavigateTo(Navigable navigable, Model ignored) {
+        this.navigable = navigable;
+    }
 }
 

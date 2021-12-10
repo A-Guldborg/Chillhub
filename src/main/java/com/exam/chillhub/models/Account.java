@@ -3,7 +3,7 @@ package com.exam.chillhub.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Account {
+public class Account extends Model {
     protected String username;
     protected String password;
     protected List<User> users;

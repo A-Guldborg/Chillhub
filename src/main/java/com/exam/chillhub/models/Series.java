@@ -1,5 +1,7 @@
 package com.exam.chillhub.models;
 
+import com.exam.chillhub.enums.MediaType;
+
 import java.util.ArrayList;
 import java.util.List;
 

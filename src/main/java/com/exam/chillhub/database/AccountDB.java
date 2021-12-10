@@ -73,7 +73,7 @@ public class AccountDB {
             file.write(savetxt.toString());
             file.close();
         } catch (IOException e) {
-            System.out.println("Error when saving accounts");
+            throw new RuntimeException(e.getMessage());
         }
     }
 

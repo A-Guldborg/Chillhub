@@ -1,37 +1,32 @@
 package com.exam.chillhub.controllers;
 
 import com.exam.chillhub.database.MediaDB;
+import com.exam.chillhub.enums.CategoryType;
+import com.exam.chillhub.enums.View;
 import com.exam.chillhub.models.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-
-import static com.exam.chillhub.ChillhubApplication.getResource;
 
 public class MediaViewController extends MediaController {
     @FXML
     private Label title;
-
     @FXML
-    private ScrollPane pane;
-
+    private Label year;
+    @FXML
+    private Label rating;
     @FXML
     private Accordion seasonsPane;
-
     @FXML
     private VBox contentBox;
 
     public void initialize() {
         super.initialize();
-        Series s = (Series) MediaDB.instance.search("Game of Thrones").getFilteredData().get(0);
+        Series s = (Series) MediaDB.instance.getDB().search("Game of Thrones").getFilteredData().get(0);
         setModel(s);
     }
 
@@ -47,7 +42,6 @@ public class MediaViewController extends MediaController {
                 HBox hbox = new HBox();
                 hbox.getChildren().addAll(new Label("Episode " + i), new Button("Play"));
                 vbox.getChildren().add(hbox);
-                System.out.println("Episode" + i);
             }
             tPane.setContent(vbox);
             seasonsPane.getPanes().add(tPane);
@@ -57,22 +51,28 @@ public class MediaViewController extends MediaController {
     public void setModel(Media model) {
         if (this.model != null) {
             title.textProperty().unbindBidirectional(this.model.titleProperty());
+            year.textProperty().unbindBidirectional(this.model.yearProperty());
+            rating.textProperty().unbindBidirectional(this.model.ratingProperty());
+
         }
         super.setModel(model);
-        this.title.textProperty().bindBidirectional(model.titleProperty());
+        title.textProperty().bindBidirectional(model.titleProperty());
+        year.textProperty().bindBidirectional(model.yearProperty());
+        rating.textProperty().bind(model.ratingProperty().asString());
 
         // Todo add filter view for each category
-        Map<CategoryType, Filter> categories = MediaDB.instance.getCategories();
-        List<CategoryType> mediaCategories = model.getCategories();
+        var categories = MediaDB.instance.getCategories();
+        var mediaCategories = model.getCategories();
         for (CategoryType cat : mediaCategories) {
-            FXMLLoader filterview = new FXMLLoader(getResource("category.fxml"));
-            try {
-                contentBox.getChildren().add(filterview.load());
-            } catch (IOException e) {
-                throw new RuntimeException("Error loading fxml");
-            }
-            FilterController controller = filterview.getController();
-            controller.setModel(categories.get(cat));
+            var loaded = View.Category.load();
+            contentBox.getChildren().add(loaded.node());
+            FilterViewController controller = loaded.loader().getController();
+            controller.onNavigateTo(navigable, categories.get(cat));
         }
+    }
+
+    @FXML
+    public void onBack() {
+        navigable.navigateBack();
     }
 }

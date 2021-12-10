@@ -1,5 +1,6 @@
 package com.exam.chillhub.test;
 
+import com.exam.chillhub.enums.MediaType;
 import com.exam.chillhub.models.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

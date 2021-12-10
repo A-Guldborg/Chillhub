@@ -10,4 +10,6 @@ module com.exam.chillhub {
     exports com.exam.chillhub;
     exports com.exam.chillhub.controllers;
     exports com.exam.chillhub.models;
+    exports com.exam.chillhub.enums;
+    opens com.exam.chillhub.enums to javafx.fxml, javafx.graphics;
 }

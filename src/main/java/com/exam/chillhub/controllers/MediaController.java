@@ -1,16 +1,19 @@
 package com.exam.chillhub.controllers;
 
+import com.exam.chillhub.enums.View;
 import com.exam.chillhub.models.Media;
+import com.exam.chillhub.models.Model;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import static com.exam.chillhub.ChillhubApplication.openResource;
 
-public class MediaController {
+public class MediaController implements Navigator {
     @FXML
     protected ImageView poster;
     @FXML
@@ -18,6 +21,7 @@ public class MediaController {
     @FXML
     protected Button favoriteBtn;
 
+    protected Navigable navigable;
     protected Media model;
     private ChangeListener<Boolean> favoriteListener;
     private ImageView checkImg;
@@ -63,5 +67,16 @@ public class MediaController {
     protected void onFavoriteAction() {
         // Set favorite to inverse of current value
         model.favoriteProperty().set(!model.getFavorite());
+    }
+
+    @Override
+    public void onNavigateTo(Navigable navigable, Model model) {
+        this.navigable = navigable;
+        setModel((Media) model);
+    }
+
+    @FXML
+    public void onClick() {
+        navigable.navigateTo(View.MediaView, model);
     }
 }
