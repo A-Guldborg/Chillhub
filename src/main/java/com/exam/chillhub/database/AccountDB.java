@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.exam.chillhub.ChillhubApplication.getResource;
 import static com.exam.chillhub.ChillhubApplication.openResource;
 
 public class AccountDB {
@@ -69,7 +70,7 @@ public class AccountDB {
             }
         }
         try {
-            FileWriter file = new FileWriter("src/main/resources/com/exam/chillhub/" + dbPath, false);
+            FileWriter file = new FileWriter(getResource(dbPath).getFile(), false);
             file.write(savetxt.toString());
             file.close();
         } catch (IOException e) {
