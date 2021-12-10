@@ -28,9 +28,9 @@ public class LoginViewController implements Navigator {
 
         boolean found = false;
         for (var acc : AccountDB.instance.getAccounts()) {
-            if (acc.getUsername().equals(username.textProperty().get())){
+            if (acc.getUsername().equals(username.textProperty().get())) {
                 found = true;
-                if (acc.checkPassword(password.textProperty().get())){
+                if (acc.checkPassword(password.textProperty().get())) {
                     navigable.navigateTo(View.AccountView, acc);
                 } else {
                     WrongPasswordOrUsername.visibleProperty().setValue(true);

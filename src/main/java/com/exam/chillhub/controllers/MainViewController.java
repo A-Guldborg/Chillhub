@@ -8,11 +8,10 @@ import javafx.scene.layout.AnchorPane;
 import java.util.Stack;
 
 public class MainViewController implements Navigable {
+    private final Stack<NavigationFrame> navigationStack = new Stack<>();
     @FXML
     private AnchorPane pane;
-
     private NavigationFrame navigationTop;
-    private final Stack<NavigationFrame> navigationStack = new Stack<>();
 
     @FXML
     public void initialize() {

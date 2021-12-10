@@ -9,14 +9,10 @@ import com.exam.chillhub.models.Model;
  */
 public interface Navigable {
     /**
-     * Represents a frame in a navigation stack.
-     */
-    record NavigationFrame(View view, Model model) {}
-
-    /**
      * Navigates the given view, passing the given model to that view's controller. Implementers should store a new
      * navigation frame when this is called.
-     * @param view The view to navigate to.
+     *
+     * @param view  The view to navigate to.
      * @param model The model for the given view's controller.
      */
     void navigateTo(View view, Model model);
@@ -25,4 +21,10 @@ public interface Navigable {
      * Navigates backwards to the previous view if any exists.
      */
     void navigateBack();
+
+    /**
+     * Represents a frame in a navigation stack.
+     */
+    record NavigationFrame(View view, Model model) {
+    }
 }

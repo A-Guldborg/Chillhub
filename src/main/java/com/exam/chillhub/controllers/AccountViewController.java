@@ -1,16 +1,11 @@
 package com.exam.chillhub.controllers;
 
 import com.exam.chillhub.enums.View;
-import com.exam.chillhub.models.User;
 import com.exam.chillhub.models.Account;
 import com.exam.chillhub.models.Model;
-import javafx.event.ActionEvent;
+import com.exam.chillhub.models.User;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import java.io.IOException;
 import javafx.scene.layout.HBox;
-
-import static com.exam.chillhub.ChillhubApplication.getResource;
 
 public class AccountViewController implements Navigator {
     @FXML

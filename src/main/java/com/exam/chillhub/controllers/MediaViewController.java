@@ -3,10 +3,14 @@ package com.exam.chillhub.controllers;
 import com.exam.chillhub.database.MediaDB;
 import com.exam.chillhub.enums.CategoryType;
 import com.exam.chillhub.enums.View;
-import com.exam.chillhub.models.*;
-import javafx.event.ActionEvent;
+import com.exam.chillhub.models.Media;
+import com.exam.chillhub.models.Season;
+import com.exam.chillhub.models.Series;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 

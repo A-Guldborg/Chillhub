@@ -78,7 +78,6 @@ public class AccountDB {
     }
 
     /**
-     *
      * @param account Account to be added
      * @return True if account creation succeeds, false if username is already in use
      */

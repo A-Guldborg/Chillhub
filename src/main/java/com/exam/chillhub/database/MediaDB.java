@@ -1,9 +1,14 @@
 package com.exam.chillhub.database;
 
 import com.exam.chillhub.enums.CategoryType;
-import com.exam.chillhub.models.*;
+import com.exam.chillhub.models.Filter;
+import com.exam.chillhub.models.Media;
+import com.exam.chillhub.models.Movie;
+import com.exam.chillhub.models.Series;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 import static com.exam.chillhub.ChillhubApplication.openResource;
 

@@ -78,6 +78,7 @@ public class Filter extends Model {
     /**
      * Basic search returning a filter of all elements that has the searchstring in it's name.
      * Filters can filter only specific media type, i.e. search for only movies with "king" in the name etc.
+     *
      * @param searchstring String to be used when searching
      * @return Filter of all media
      */
@@ -99,7 +100,7 @@ public class Filter extends Model {
                 }
             }
             if (occ > 0) {
-                mediaoccurences.get(occ-1).add(m);
+                mediaoccurences.get(occ - 1).add(m);
             }
         }
         Filter filter = new Filter(searchstring);

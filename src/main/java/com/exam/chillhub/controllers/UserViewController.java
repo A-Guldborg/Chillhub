@@ -2,41 +2,33 @@ package com.exam.chillhub.controllers;
 
 import com.exam.chillhub.database.MediaDB;
 import com.exam.chillhub.enums.CategoryType;
-import com.exam.chillhub.enums.View;
 import com.exam.chillhub.enums.MediaType;
+import com.exam.chillhub.enums.View;
 import com.exam.chillhub.models.Model;
 import com.exam.chillhub.models.User;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Pair;
 
 import java.util.HashMap;
 import java.util.Stack;
 
 public class UserViewController implements Navigable, Navigator {
+    private final HashMap<NavigationFrame, Node> viewCache = new HashMap<>();
+    private final Stack<NavigationFrame> navigationStack = new Stack<>();
     @FXML
     private ComboBox<CategoryType> categoryPicker;
     @FXML
     private TextField searchInput;
     @FXML
     private AnchorPane mainPane;
-
     private User model;
     private MediaType type;
     private boolean categoryActive = true;
-    private final HashMap<NavigationFrame, Node> viewCache = new HashMap<>();
-
     private NavigationFrame navigationTop;
-    private final Stack<NavigationFrame> navigationStack = new Stack<>();
     private Navigable navigable;
 
     @FXML
