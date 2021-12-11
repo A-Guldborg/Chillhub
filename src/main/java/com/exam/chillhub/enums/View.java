@@ -22,10 +22,10 @@ public enum View {
     Media("views/media.fxml"),
     MediaView("views/media-view.fxml");
 
-    private String fxmlPath;
+    private final FXMLLoader loader;
 
     View(String fxmlPath) {
-        this.fxmlPath = fxmlPath;
+        loader = new FXMLLoader(getResource(fxmlPath));
     }
 
     /**
@@ -36,7 +36,8 @@ public enum View {
      *                          due to malformed fxml or poor linking to the controller.
      */
     public LoadedView load() {
-        var loader = new FXMLLoader(getResource(fxmlPath));
+        loader.setRoot(null);
+        loader.setController(null);
         Node node;
         try {
             node = loader.load();
