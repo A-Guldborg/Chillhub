@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="217.0"
             prefWidth="171.0"
-            style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%,  #dd5e89,  #f7bb97);" xmlns="http://javafx.com/javafx/11.0.2"
+            style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%,  #dd5e89,  #f7bb97);"
+            xmlns="http://javafx.com/javafx/11.0.2"
             fx:controller="com.exam.chillhub.controllers.UserController">
     <ImageView fitHeight="150.0" fitWidth="206.0" layoutX="28.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true"
                AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="8.0">

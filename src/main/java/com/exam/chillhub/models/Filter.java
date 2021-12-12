@@ -3,20 +3,21 @@ package com.exam.chillhub.models;
 import com.exam.chillhub.enums.MediaType;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Filter extends Model {
     private final StringProperty title;
-    private final List<Media> filteredData;
     private final HashMap<MediaType, Filter> cachedLists;
     private final HashMap<String, Filter> cachedSearches;
+    private ObservableList<Media> filteredData;
 
     public Filter(String title) {
         this.title = new SimpleStringProperty(title);
-        filteredData = new ArrayList<>();
+        filteredData = FXCollections.observableArrayList();
         cachedLists = new HashMap<>();
         cachedSearches = new HashMap<>();
     }
@@ -47,8 +48,12 @@ public class Filter extends Model {
         return this.title;
     }
 
-    public List<Media> getFilteredData() {
+    public ObservableList<Media> getFilteredData() {
         return this.filteredData;
+    }
+
+    public void resetFilteredData() {
+        filteredData = FXCollections.observableArrayList(filteredData);
     }
 
     /**

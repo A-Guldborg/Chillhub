@@ -5,8 +5,12 @@ import com.exam.chillhub.models.Filter;
 import com.exam.chillhub.models.Media;
 import com.exam.chillhub.models.Model;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class FilterViewController implements Navigator {
@@ -17,6 +21,7 @@ public class FilterViewController implements Navigator {
 
     private Navigable navigable;
     private Filter model;
+    private Map<Media, Node> children;
 
     public void setModel(Filter model) {
         // Unbind current properties
@@ -25,16 +30,28 @@ public class FilterViewController implements Navigator {
         }
 
         this.model = model;
+        children = new HashMap<>();
 
         // Bind new properties
         this.title.textProperty().bindBidirectional(model.titleProperty());
 
         // Load all media
         for (Media m : model.getFilteredData()) {
-            var loaded = View.Media.load();
-            media.getChildren().add(loaded.node());
-            MediaController controller = loaded.loader().getController();
-            controller.onNavigateTo(navigable, m);
+            add(m);
+        }
+    }
+
+    public void add(Media media) {
+        var loaded = View.Media.load();
+        this.media.getChildren().add(loaded.node());
+        MediaController controller = loaded.loader().getController();
+        controller.onNavigateTo(navigable, media);
+        children.put(media, loaded.node());
+    }
+
+    public void remove(Media media) {
+        if (children.containsKey(media)) {
+            this.media.getChildren().remove(children.get(media));
         }
     }
 

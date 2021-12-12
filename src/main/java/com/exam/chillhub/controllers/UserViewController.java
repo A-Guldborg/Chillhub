@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Stack;
 
 public class UserViewController implements Navigable, Navigator {
@@ -123,6 +124,7 @@ public class UserViewController implements Navigable, Navigator {
 
     @Override
     public void navigateBack() {
+        viewCache.clear();
         if (navigationStack.isEmpty())
             return;
         navigationTop = navigationStack.pop();
@@ -133,6 +135,21 @@ public class UserViewController implements Navigable, Navigator {
     public void onNavigateTo(Navigable navigable, Model model) {
         this.navigable = navigable;
         this.model = (User) model;
+        this.model.getFavorites().resetFilteredData();
+
+        // Set up listeners etc. for favorites list
+        var favorites = new HashSet<>(this.model.getFavorites().getFilteredData());
+        for (var media : MediaDB.instance.getDB().getFilteredData()) {
+            media.resetFavorite();
+            media.setFavorite(favorites.contains(media));
+            media.favoriteProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue)
+                    this.model.getFavorites().getFilteredData().add(media);
+                else
+                    this.model.getFavorites().getFilteredData().remove(media);
+            });
+        }
+
         navigateTo(View.HomeView, model);
     }
 }

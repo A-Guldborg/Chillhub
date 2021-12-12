@@ -15,10 +15,10 @@ public abstract class Media extends Model {
     private final MediaType type;
     private final DoubleProperty rating;
     private final StringProperty year;
-    private final BooleanProperty favorite;
     private final int idx;
     private final ObjectProperty<Image> poster;
     private final StringProperty titleProperty;
+    private BooleanProperty favorite;
     private List<CategoryType> categories;
 
     public Media(MediaType type, String name, String year, double rating, boolean favorite, int idx) {
@@ -62,6 +62,10 @@ public abstract class Media extends Model {
         return this.favorite.get();
     }
 
+    public void setFavorite(boolean favorite) {
+        favoriteProperty().set(favorite);
+    }
+
     public int getIdx() {
         return this.idx;
     }
@@ -96,5 +100,10 @@ public abstract class Media extends Model {
 
     public List<CategoryType> getCategories() {
         return this.categories;
+    }
+
+    public void resetFavorite() {
+        // Ugly "remove all listeners"
+        favorite = new SimpleBooleanProperty(false);
     }
 }
