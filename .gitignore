@@ -3,6 +3,7 @@ gradlew
 .gradle
 **/build/
 !src/**/build/
+accounts.txt
 
 # Ignore Gradle GUI config
 gradle-app.setting

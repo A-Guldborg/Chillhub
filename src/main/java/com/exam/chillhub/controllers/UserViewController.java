@@ -124,7 +124,6 @@ public class UserViewController implements Navigable, Navigator {
 
     @Override
     public void navigateBack() {
-        viewCache.clear();
         if (navigationStack.isEmpty())
             return;
         navigationTop = navigationStack.pop();
