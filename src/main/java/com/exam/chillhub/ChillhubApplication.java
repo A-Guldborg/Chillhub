@@ -1,19 +1,23 @@
 package com.exam.chillhub;
 
+import com.exam.chillhub.controllers.ErrorViewController;
 import com.exam.chillhub.database.AccountDB;
 import com.exam.chillhub.enums.View;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
 
 public class ChillhubApplication extends Application {
-    public static void main(String[] args) {
-        launch();
+    public static void launch(Class<? extends Application> cls, String[] args) {
+        Application.launch(cls, args);
     }
 
     /**
@@ -43,6 +47,18 @@ public class ChillhubApplication extends Application {
         return ChillhubApplication.class.getResource(name);
     }
 
+    public static void showError(String title, String message, String error) {
+        var loaded = View.ErrorView.load();
+        ErrorViewController controller = loaded.loader().getController();
+        controller.setTitle(title);
+        controller.setMessage(message);
+        controller.setError(error);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(new Scene((Parent) loaded.node()));
+        stage.show();
+    }
+
     @Override
     public void start(Stage stage) {
         var node = View.MainView.load().node();
@@ -50,6 +66,11 @@ public class ChillhubApplication extends Application {
         stage.setTitle("Chillhub");
         stage.setScene(scene);
         stage.show();
+        Thread.setDefaultUncaughtExceptionHandler((t, e) -> {
+            StringWriter sw = new StringWriter();
+            e.printStackTrace(new PrintWriter(sw));
+            showError("Fejl", "En fejl forhindrede operationen i at udføres", sw.toString());
+        });
     }
 
     @Override

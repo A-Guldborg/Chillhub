@@ -21,7 +21,8 @@ public enum View {
     Category("views/category.fxml"),
     Media("views/media.fxml"),
     MediaView("views/media-view.fxml"),
-    PlayerView("views/player-view.fxml");
+    PlayerView("views/player-view.fxml"),
+    ErrorView("views/error-view.fxml");
 
     private final FXMLLoader loader;
 
