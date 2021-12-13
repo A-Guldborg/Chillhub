@@ -6,9 +6,12 @@ import com.exam.chillhub.models.Model;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import static com.exam.chillhub.ChillhubApplication.openResource;
 
@@ -77,5 +80,13 @@ public class MediaController implements Navigator {
     @FXML
     public void onClick() {
         navigable.navigateTo(View.MediaView, model);
+    }
+
+    @FXML
+    public void onPlay() {
+        var loaded = View.PlayerView.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene((Parent) loaded.node()));
+        stage.show();
     }
 }

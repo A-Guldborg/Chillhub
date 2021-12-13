@@ -2,6 +2,7 @@ module com.exam.chillhub {
     requires javafx.controls;
     requires transitive javafx.graphics;
     requires javafx.fxml;
+    requires javafx.media;
 
     requires org.kordamp.bootstrapfx.core;
 

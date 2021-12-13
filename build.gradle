@@ -38,7 +38,7 @@ jar {
 
 javafx {
     version = '17.0.0.1'
-    modules = ['javafx.controls', 'javafx.fxml']
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.media']
 }
 
 dependencies {
@@ -46,18 +46,18 @@ dependencies {
     implementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
 
-    implementation group: 'org.openjfx', name: 'javafx-base', version: '0.0.9', classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-base', version: '0.0.9', classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-base', version: '0.0.9', classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: '0.0.9', classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: '0.0.9', classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: '0.0.9', classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: '0.0.9', classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: '0.0.9', classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: '0.0.9', classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: '0.0.9', classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: '0.0.9', classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: '0.0.9', classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-base', version: '0.0.10', classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-base', version: '0.0.10', classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-base', version: '0.0.10', classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: '0.0.10', classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: '0.0.10', classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: '0.0.10', classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: '0.0.10', classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: '0.0.10', classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: '0.0.10', classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: '0.0.10', classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: '0.0.10', classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: '0.0.10', classifier: 'linux'
 }
 
 test {

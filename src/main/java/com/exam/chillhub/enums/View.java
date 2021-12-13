@@ -20,7 +20,8 @@ public enum View {
     FilterView("views/filter-view.fxml"),
     Category("views/category.fxml"),
     Media("views/media.fxml"),
-    MediaView("views/media-view.fxml");
+    MediaView("views/media-view.fxml"),
+    PlayerView("views/player-view.fxml");
 
     private final FXMLLoader loader;
 
