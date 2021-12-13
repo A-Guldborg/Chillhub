@@ -5,6 +5,7 @@ import com.exam.chillhub.models.Filter;
 import com.exam.chillhub.models.Media;
 import com.exam.chillhub.models.User;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import static com.exam.chillhub.ChillhubApplication.openResource;
 
 public class AccountDB {
     public final static AccountDB instance;
-    private final static String dbPath = "accounts.txt";
+    private final static String dbPath = "./accounts.txt";
 
     static {
         instance = new AccountDB();
@@ -33,9 +34,11 @@ public class AccountDB {
 
     private void readAccounts() {
         try {
-            Scanner inputFile = new Scanner(openResource(dbPath));
+            Scanner inputFile = new Scanner(new FileReader(dbPath));
             while (inputFile.hasNext()) {
-                String[] accountInfo = inputFile.nextLine().split(";");
+                String line = inputFile.nextLine();
+                System.out.println(line);
+                String[] accountInfo = line.split(";");
                 Account account = new Account(accountInfo[0], accountInfo[1]);
                 for (int i = 0; i < Integer.parseInt(accountInfo[2]); i++) {
                     String[] userInfo = inputFile.nextLine().split(";");
@@ -70,7 +73,7 @@ public class AccountDB {
             }
         }
         try {
-            FileWriter file = new FileWriter(getResource(dbPath).getFile(), false);
+            FileWriter file = new FileWriter(dbPath, false);
             file.write(savetxt.toString());
             file.close();
         } catch (IOException e) {

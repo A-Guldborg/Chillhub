@@ -48,7 +48,7 @@ public class MediaDBTests {
     }
 
     @Test
-    public void testSeveralWords() {
+    public void testSeveralWordsSearchQuery() {
         String searchQuery = "rain Man";
         Filter searchFilter = MediaDB.instance.getDB().search(searchQuery);
         List<Media> filteredData = searchFilter.getFilteredData();
