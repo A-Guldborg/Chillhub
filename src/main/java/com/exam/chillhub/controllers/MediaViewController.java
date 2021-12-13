@@ -2,6 +2,7 @@ package com.exam.chillhub.controllers;
 
 import com.exam.chillhub.database.MediaDB;
 import com.exam.chillhub.enums.CategoryType;
+import com.exam.chillhub.enums.MediaType;
 import com.exam.chillhub.enums.View;
 import com.exam.chillhub.models.Media;
 import com.exam.chillhub.models.Season;
@@ -30,13 +31,10 @@ public class MediaViewController extends MediaController {
 
     public void initialize() {
         super.initialize();
-        Series s = (Series) MediaDB.instance.getDB().search("Game of Thrones").getFilteredData().get(0);
-        setModel(s);
     }
 
     public void setModel(Series model) {
-        // Overloaded function if and only if it is a season (used to load seasons and episodes)
-        setModel((Media) model);
+        // Overloaded function if and only if it is a series (used to load seasons and episodes)
         List<Season> seasons = model.getSeasons();
         for (Season season : seasons) {
             TitledPane tPane = new TitledPane();
@@ -58,6 +56,9 @@ public class MediaViewController extends MediaController {
             year.textProperty().unbindBidirectional(this.model.yearProperty());
             rating.textProperty().unbindBidirectional(this.model.ratingProperty());
 
+        }
+        if (model.getType() == MediaType.SERIES) {
+            setModel((Series) model);
         }
         super.setModel(model);
         title.textProperty().bindBidirectional(model.titleProperty());
