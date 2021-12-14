@@ -1,16 +1,19 @@
 package com.exam.chillhub.controllers;
+import com.exam.chillhub.enums.View;
+import com.exam.chillhub.models.Model;
 import com.exam.chillhub.models.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import java.util.Random;
 
-public class UserController {
-
+public class UserController implements Navigator {
     @FXML
     public TextField DefaultUsernameUser;
     @FXML
     public AnchorPane background;
+
+    private Navigable navigable;
 
     String lg1 = "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%,  #2193b0,  #6dd5ed);";
     String lg2 = "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%,  #cc2b5e,  #753a88);";
@@ -32,6 +35,17 @@ public class UserController {
         Random random = new Random();
         int select = random.nextInt(arr.length);
         background.setStyle(arr[select]);
+    }
+
+    @FXML
+    public void onClick() {
+        navigable.navigateTo(View.UserView, model);
+    }
+
+    @Override
+    public void onNavigateTo(Navigable navigable, Model model) {
+        this.navigable = navigable;
+        setModel((User) model);
     }
 }
 
