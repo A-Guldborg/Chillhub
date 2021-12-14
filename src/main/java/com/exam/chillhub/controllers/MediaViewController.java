@@ -71,7 +71,7 @@ public class MediaViewController extends MediaController {
         for (CategoryType cat : mediaCategories) {
             var loaded = View.Category.load();
             contentBox.getChildren().add(loaded.node());
-            FilterViewController controller = loaded.loader().getController();
+            Navigator controller = loaded.loader().getController();
             controller.onNavigateTo(navigable, categories.get(cat));
         }
     }

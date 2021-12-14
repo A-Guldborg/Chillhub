@@ -44,7 +44,7 @@ public class FilterViewController implements Navigator {
     public void add(Media media) {
         var loaded = View.Media.load();
         this.media.getChildren().add(loaded.node());
-        MediaController controller = loaded.loader().getController();
+        Navigator controller = loaded.loader().getController();
         controller.onNavigateTo(navigable, media);
         children.put(media, loaded.node());
     }

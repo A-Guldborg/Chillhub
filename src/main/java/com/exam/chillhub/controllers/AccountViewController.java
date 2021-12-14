@@ -25,7 +25,7 @@ public class AccountViewController implements Navigator {
     private void addUser(User user) {
         var loaded = View.User.load();
         users.getChildren().add(loaded.node());
-        UserController controller = loaded.loader().getController();
+        Navigator controller = loaded.loader().getController();
         controller.onNavigateTo(navigable, user);
     }
 

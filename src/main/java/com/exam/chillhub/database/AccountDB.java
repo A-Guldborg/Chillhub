@@ -20,12 +20,10 @@ public class AccountDB {
         instance = new AccountDB();
     }
 
-    private final Filter media;
     private final List<Account> AccountDB;
 
     private AccountDB() {
         AccountDB = new ArrayList<>();
-        media = MediaDB.getInstance().getDB();
         readAccounts();
     }
 
@@ -45,11 +43,6 @@ public class AccountDB {
                     String[] userInfo = inputFile.nextLine().split(";");
                     User u = new User(userInfo[0], userInfo[1]);
                     String[] favorites = inputFile.nextLine().split(";");
-                    for (String fav : favorites) {
-                        if (!fav.equals("")) {
-                            u.changeFavorite(media.getFilteredData().get(Integer.parseInt(fav)));
-                        }
-                    }
                     account.addUser(u);
                 }
                 AccountDB.add(account);
