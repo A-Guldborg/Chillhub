@@ -27,7 +27,7 @@ public class HomeViewController implements Navigator {
         this.model = model;
         categories.getChildren().clear();
         favorites = addCategory(model.getFavorites());
-        for (var filter : MediaDB.instance.getCategories().values()) {
+        for (var filter : MediaDB.getInstance().getCategories().values()) {
             addCategory(filter);
         }
 

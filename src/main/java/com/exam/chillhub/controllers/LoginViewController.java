@@ -27,7 +27,7 @@ public class LoginViewController implements Navigator {
         WrongPasswordOrUsername.visibleProperty().setValue(false);
 
         boolean found = false;
-        for (var acc : AccountDB.instance.getAccounts()) {
+        for (var acc : AccountDB.getInstance().getAccounts()) {
             if (acc.getUsername().equals(username.textProperty().get())) {
                 found = true;
                 if (acc.checkPassword(password.textProperty().get())) {
@@ -50,7 +50,7 @@ public class LoginViewController implements Navigator {
 
         if (username != null && password != null) {
             var newAcc = new Account(username.textProperty().get(), password.textProperty().get());
-            boolean successfulCreation = AccountDB.instance.addAccount(newAcc);
+            boolean successfulCreation = AccountDB.getInstance().addAccount(newAcc);
             if (successfulCreation) {
                 navigable.navigateTo(View.AccountView, newAcc);
             } else {

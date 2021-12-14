@@ -13,16 +13,17 @@ public class AccountDBTests {
 
     @BeforeEach
     public void setUp() {
-        accounts = AccountDB.instance.getAccounts();
+        accounts = AccountDB.getInstance().getAccounts();
     }
 
     @AfterEach
     public void save() {
-        AccountDB.instance.saveAccounts();
+        AccountDB.getInstance().saveAccounts();
     }
 
     @Test
     public void testAdminAccountLoads() {
+        // Test is broken since we moved accounts.txt out of jar
         boolean bool = false;
         for (Account acc : accounts) {
             if (acc.getUsername().equals("admin")) {
@@ -41,9 +42,9 @@ public class AccountDBTests {
     @Test
     public void testAddAndRemoveAccount() {
         Account account = new Account("user123", "strongpassword");
-        AccountDB.instance.addAccount(account);
-        AccountDB.instance.saveAccounts();
-        List<Account> accounts = AccountDB.instance.getAccounts();
+        AccountDB.getInstance().addAccount(account);
+        AccountDB.getInstance().saveAccounts();
+        List<Account> accounts = AccountDB.getInstance().getAccounts();
         boolean bool = false;
         for (Account acc : accounts) {
             if (acc.getUsername().equals("user123")) {
@@ -54,6 +55,6 @@ public class AccountDBTests {
         }
         assertTrue(bool, "Test-user was not properly added to the database");
         // Removes the added account (such that the adding feature can be tested multiple times)
-        AccountDB.instance.removeAccount(account);
+        AccountDB.getInstance().removeAccount(account);
     }
 }

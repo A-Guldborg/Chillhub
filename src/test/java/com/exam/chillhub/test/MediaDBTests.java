@@ -18,8 +18,8 @@ public class MediaDBTests {
 
     @BeforeEach
     public void setUp() {
-        media = MediaDB.instance.getDB();
-        categories = MediaDB.instance.getCategories();
+        media = MediaDB.getInstance().getDB();
+        categories = MediaDB.getInstance().getCategories();
     }
 
     @Test
@@ -39,7 +39,7 @@ public class MediaDBTests {
     @Test
     public void testSearchQuery_star() {
         String searchQuery = "StAr";
-        Filter searchfilter = MediaDB.instance.getDB().search(searchQuery);
+        Filter searchfilter = MediaDB.getInstance().getDB().search(searchQuery);
         List<Media> filteredData = searchfilter.getFilteredData();
         assertEquals(filteredData.size(), 3, "Should find 3 movies but found " + filteredData.size());
         for (Media m : filteredData) {
@@ -50,7 +50,7 @@ public class MediaDBTests {
     @Test
     public void testSeveralWordsSearchQuery() {
         String searchQuery = "rain Man";
-        Filter searchFilter = MediaDB.instance.getDB().search(searchQuery);
+        Filter searchFilter = MediaDB.getInstance().getDB().search(searchQuery);
         List<Media> filteredData = searchFilter.getFilteredData();
         assertEquals(filteredData.get(0).getName(), "Rain Man", "Should find Rain Man as the first move but found " + filteredData.get(0).getName() + " instead");
         assertEquals(filteredData.size(), 6, "Expected 6 media but found " + filteredData.size() +  " media instead when searching for Rain Man");

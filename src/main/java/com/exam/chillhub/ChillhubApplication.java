@@ -76,6 +76,6 @@ public class ChillhubApplication extends Application {
     @Override
     public void stop() {
         // When window is closed, this makes sure to save all accounts before closing the program
-        AccountDB.instance.saveAccounts();
+        AccountDB.getInstance().saveAccounts();
     }
 }

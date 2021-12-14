@@ -13,7 +13,7 @@ import java.util.Scanner;
 import static com.exam.chillhub.ChillhubApplication.openResource;
 
 public class MediaDB {
-    public final static MediaDB instance;
+    private final static MediaDB instance;
     private final static String moviesPath = "movie/db.txt";
     private final static String seriesPath = "series/db.txt";
 
@@ -30,6 +30,10 @@ public class MediaDB {
         Categories = new HashMap<>();
         addMovies();
         addSeries();
+    }
+
+    public static MediaDB getInstance() {
+        return instance;
     }
 
     public Filter getDB() {

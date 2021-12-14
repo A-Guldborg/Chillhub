@@ -54,14 +54,14 @@ public class UserViewController implements Navigable, Navigator {
     @FXML
     private void moviesAction() {
         type = MediaType.MOVIE;
-        navigateTo(View.FilterView, MediaDB.instance.getDB().getFilteredType(type));
+        navigateTo(View.FilterView, MediaDB.getInstance().getDB().getFilteredType(type));
         resetCategory();
     }
 
     @FXML
     private void seriesAction() {
         type = MediaType.SERIES;
-        navigateTo(View.FilterView, MediaDB.instance.getDB().getFilteredType(type));
+        navigateTo(View.FilterView, MediaDB.getInstance().getDB().getFilteredType(type));
         resetCategory();
     }
 
@@ -75,7 +75,7 @@ public class UserViewController implements Navigable, Navigator {
             return;
         }
 
-        var filter = MediaDB.instance.getCategories().get(categoryPicker.getValue());
+        var filter = MediaDB.getInstance().getCategories().get(categoryPicker.getValue());
 
         if (type != MediaType.ANY)
             filter = filter.getFilteredType(type);
@@ -85,7 +85,7 @@ public class UserViewController implements Navigable, Navigator {
 
     @FXML
     public void searchAction() {
-        var filter = MediaDB.instance.getDB().search(searchInput.textProperty().get());
+        var filter = MediaDB.getInstance().getDB().search(searchInput.textProperty().get());
         navigateTo(View.FilterView, filter);
     }
 
@@ -138,7 +138,7 @@ public class UserViewController implements Navigable, Navigator {
 
         // Set up listeners etc. for favorites list
         var favorites = new HashSet<>(this.model.getFavorites().getFilteredData());
-        for (var media : MediaDB.instance.getDB().getFilteredData()) {
+        for (var media : MediaDB.getInstance().getDB().getFilteredData()) {
             media.resetFavorite();
             media.setFavorite(favorites.contains(media));
             media.favoriteProperty().addListener((observable, oldValue, newValue) -> {

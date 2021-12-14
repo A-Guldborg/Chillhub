@@ -66,7 +66,7 @@ public class MediaViewController extends MediaController {
         rating.textProperty().bind(model.ratingProperty().asString());
 
         // Todo add filter view for each category
-        var categories = MediaDB.instance.getCategories();
+        var categories = MediaDB.getInstance().getCategories();
         var mediaCategories = model.getCategories();
         for (CategoryType cat : mediaCategories) {
             var loaded = View.Category.load();

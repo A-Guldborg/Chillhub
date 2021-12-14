@@ -12,11 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.exam.chillhub.ChillhubApplication.getResource;
-import static com.exam.chillhub.ChillhubApplication.openResource;
-
 public class AccountDB {
-    public final static AccountDB instance;
+    private final static AccountDB instance;
     private final static String dbPath = "./accounts.txt";
 
     static {
@@ -24,12 +21,16 @@ public class AccountDB {
     }
 
     private final Filter media;
-    private List<Account> AccountDB;
+    private final List<Account> AccountDB;
 
     private AccountDB() {
         AccountDB = new ArrayList<>();
-        media = MediaDB.instance.getDB();
+        media = MediaDB.getInstance().getDB();
         readAccounts();
+    }
+
+    public static AccountDB getInstance() {
+        return instance;
     }
 
     private void readAccounts() {
