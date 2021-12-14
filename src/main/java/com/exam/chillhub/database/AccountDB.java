@@ -69,8 +69,6 @@ public class AccountDB {
                 ex.printStackTrace();
             }
             readAccounts();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
