@@ -31,10 +31,8 @@ public class UserController implements Navigator {
 
     @FXML
     public void changeColorAction(){
-        String [] arr = {lg1, lg2, lg3, lg4, lg5, lg6};
-        Random random = new Random();
-        int select = random.nextInt(arr.length);
-        background.setStyle(arr[select]);
+        model.generateColor();
+        background.setStyle(model.getColor());
     }
 
     @FXML

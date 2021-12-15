@@ -22,10 +22,11 @@ public class User extends Model {
     }
 
     private static String getRandomColor() {
+        int diff = 100;
         Random random = new Random();
-        int red = random.nextInt(196) + 30;
-        int green = random.nextInt(196) + 30;
-        int blue = random.nextInt(196) + 30;
+        int red = random.nextInt(256 - diff * 2) + diff;
+        int green = random.nextInt(256 - diff * 2) + diff;
+        int blue = random.nextInt(256 - diff * 2) + diff;
         String redString = Integer.toHexString(red);
         String greenString = Integer.toHexString(green);
         String blueString = Integer.toHexString(blue);
@@ -40,9 +41,9 @@ public class User extends Model {
         }
         String colorString = "#" + redString + greenString + blueString;
 
-        int redDelta = red + random.nextInt(60) - 30;
-        int greenDelta = green + random.nextInt(60) - 30;
-        int blueDelta = blue + random.nextInt(60) - 30;
+        int redDelta = red + random.nextInt(diff * 2) - diff;
+        int greenDelta = green + random.nextInt(diff * 2) - diff;
+        int blueDelta = blue + random.nextInt(diff * 2) - diff;
         String redDeltaString = Integer.toHexString(redDelta);
         String greenDeltaString  = Integer.toHexString(greenDelta);
         String blueDeltaString = Integer.toHexString(blueDelta);
