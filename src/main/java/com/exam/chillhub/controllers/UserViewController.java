@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,6 +26,8 @@ public class UserViewController implements Navigable, Navigator {
     @FXML
     private TextField searchInput;
     @FXML
+    private BorderPane borderPane;
+    @FXML
     private AnchorPane mainPane;
     private User model;
     private MediaType type;
@@ -34,6 +37,7 @@ public class UserViewController implements Navigable, Navigator {
 
     @FXML
     public void initialize() {
+        type = MediaType.ANY;
         categoryPicker.setItems(FXCollections.observableArrayList(CategoryType.values()));
         resetCategory();
     }
@@ -135,6 +139,8 @@ public class UserViewController implements Navigable, Navigator {
         this.navigable = navigable;
         this.model = (User) model;
         this.model.getFavorites().resetFilteredData();
+
+        borderPane.setStyle(this.model.getColor());
 
         // Set up listeners etc. for favorites list
         var favorites = new HashSet<>(this.model.getFavorites().getFilteredData());

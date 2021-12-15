@@ -22,3 +22,34 @@
 .media-pane:hover, .user-pane:hover {
     -fx-opacity: 1;
 }
+
+.scroll-pane, .scroll-pane > .viewport ,.scroll-pane > .corner {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track, .scroll-bar:vertical .track {
+     -fx-background-color: transparent;
+     -fx-border-color: transparent;
+     -fx-background-radius: 0em;
+ }
+
+.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(100%, 100%, 100%, 0.2);
+    -fx-border-color: #111111;
+    -fx-border-radius: 5em;
+    -fx-background-radius: 5em;
+}
+
+.ui-transparent {
+    -fx-background-color: rgba(100%, 100%, 100%, 0.2);
+    -fx-border-color: #111111;
+}
