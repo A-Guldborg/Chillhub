@@ -16,9 +16,8 @@ public class User extends Model {
     }
 
     public User(String name, String color) {
-        Pattern searchpattern = Pattern.compile("#[0-9A-F]{6}, [0-9A-F]{6}");
-        Matcher matcher = searchpattern.matcher(color);
-        if (matcher.find()) {
+        System.out.println(color);
+        if (Pattern.matches("#[\\w]{6}, #[\\w]{6}", color)) {
             this.color = color;
         } else {
             this.color = "#6d8c82, #a03f74";
