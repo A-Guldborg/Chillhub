@@ -60,9 +60,9 @@ public class AccountDB {
                 FileWriter file = new FileWriter(dbPath, false);
                 // Creates standard accounts if it was not possible to read the accounts initially (lack of accounts.txt file)
                 file.write("admin;admin;2;\n" +
-                        "admin1;0x484d5cff;\n" +
+                        "admin1;#7e6d92, #290c5f;\n" +
                         "12;19;142;\n" +
-                        "admin2;0x0a8f89ff;\n" +
+                        "admin2;#936472, #cf503c;\n" +
                         "66;87;101;112;188;\n");
                 file.close();
             } catch (IOException ex) {

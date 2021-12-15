@@ -26,6 +26,7 @@ public class UserController implements Navigator {
 
     public void setModel(User model) {
         this.model = model;
+        background.setStyle(model.getColor());
         DefaultUsernameUser.textProperty().bindBidirectional(model.nameProperty());
     }
 

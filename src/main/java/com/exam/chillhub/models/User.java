@@ -12,7 +12,7 @@ public class User extends Model {
     private String color;
 
     public User(String name) {
-        this(name, getRandomColor().toString());
+        this(name, getRandomColor());
     }
 
     public User(String name, String color) {
@@ -58,8 +58,7 @@ public class User extends Model {
             blueDeltaString = "0" + blueDeltaString;
         }
         String colorString2 = "#" + redDeltaString + greenDeltaString + blueDeltaString;
-
-        return "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, " + colorString +", " + colorString2 + ");";
+        return colorString + ", " + colorString2;
     }
 
     public void generateColor() {
@@ -79,7 +78,7 @@ public class User extends Model {
     }
 
     public String getColor() {
-        return this.color;
+        return "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, " + this.color + ");";
     }
 
     public String getColorString() {
