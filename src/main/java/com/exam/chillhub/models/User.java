@@ -2,9 +2,9 @@ package com.exam.chillhub.models;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.paint.Color;
-
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class User extends Model {
     private StringProperty name;
@@ -16,8 +16,14 @@ public class User extends Model {
     }
 
     public User(String name, String color) {
+        Pattern searchpattern = Pattern.compile("#[0-9A-F]{6}, [0-9A-F]{6}");
+        Matcher matcher = searchpattern.matcher(color);
+        if (matcher.find()) {
+            this.color = color;
+        } else {
+            this.color = "#6d8c82, #a03f74";
+        }
         this.name = new SimpleStringProperty(name);
-        this.color = color;
         this.favorites = new Filter("Favorites");
     }
 
