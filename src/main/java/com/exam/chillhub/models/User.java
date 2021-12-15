@@ -16,7 +16,6 @@ public class User extends Model {
     }
 
     public User(String name, String color) {
-        System.out.println(color);
         if (Pattern.matches("#[\\w]{6}, #[\\w]{6}", color)) {
             this.color = color;
         } else {

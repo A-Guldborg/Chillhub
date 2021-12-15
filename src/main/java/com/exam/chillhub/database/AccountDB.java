@@ -38,7 +38,6 @@ public class AccountDB {
             Scanner inputFile = new Scanner(new FileReader(dbPath));
             while (inputFile.hasNext()) {
                 String line = inputFile.nextLine();
-                System.out.println(line);
                 String[] accountInfo = line.split(";");
                 Account account = new Account(accountInfo[0], accountInfo[1]);
                 for (int i = 0; i < Integer.parseInt(accountInfo[2]); i++) {

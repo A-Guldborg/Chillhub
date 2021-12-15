@@ -21,7 +21,7 @@ public class UserTests {
     public void ctorNameColor() {
         var user = new User("Test", "red");
         assertEquals(user.getName(), "Test");
-        assertEquals(user.getColor(), Color.RED);
+        assertEquals(user.getColorString(), "#6d8c82, #a03f74");
         assertEquals(user.getFavorites().getFilteredData().size(), 0);
     }
 
