@@ -8,8 +8,8 @@ import java.util.Random;
 
 public class User extends Model {
     private StringProperty name;
-    private Color color;
     private Filter favorites;
+    private String color;
 
     public User(String name) {
         this(name, getRandomColor().toString());
@@ -17,16 +17,48 @@ public class User extends Model {
 
     public User(String name, String color) {
         this.name = new SimpleStringProperty(name);
-        this.color = Color.valueOf(color);
+        this.color = color;
         this.favorites = new Filter("Favorites");
     }
 
-    private static Color getRandomColor() {
+    private static String getRandomColor() {
         Random random = new Random();
-        double red = random.nextDouble();
-        double green = random.nextDouble();
-        double blue = random.nextDouble();
-        return new Color(red, green, blue, 1);
+        int red = random.nextInt(196) + 30;
+        int green = random.nextInt(196) + 30;
+        int blue = random.nextInt(196) + 30;
+        String redString = Integer.toHexString(red);
+        String greenString = Integer.toHexString(green);
+        String blueString = Integer.toHexString(blue);
+        if(redString.length() == 1){
+            redString = "0" + redString;
+        }
+        if(greenString.length() == 1){
+            greenString = "0" + greenString;
+        }
+        if(blueString.length() == 1){
+            blueString = "0" + blueString;
+        }
+        String colorString = "#" + redString + greenString + blueString;
+
+        int redDelta = red + random.nextInt(60) - 30;
+        int greenDelta = green + random.nextInt(60) - 30;
+        int blueDelta = blue + random.nextInt(60) - 30;
+        String redDeltaString = Integer.toHexString(redDelta);
+        String greenDeltaString  = Integer.toHexString(greenDelta);
+        String blueDeltaString = Integer.toHexString(blueDelta);
+        if(redDeltaString.length() == 1) {
+            redDeltaString = "0" + redDeltaString;
+        }
+        if(greenDeltaString.length() == 1) {
+            greenDeltaString = "0" + greenDeltaString;
+
+        }
+        if(blueDeltaString.length() == 1) {
+            blueDeltaString = "0" + blueDeltaString;
+        }
+        String colorString2 = "#" + redDeltaString + greenDeltaString + blueDeltaString;
+
+        return "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, " + colorString +", " + colorString2 + ");";
     }
 
     public void generateColor() {
@@ -45,12 +77,12 @@ public class User extends Model {
         return name;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return this.color;
     }
 
     public String getColorString() {
-        return color.toString();
+        return this.color;
     }
 
     public Filter getFavorites() {
