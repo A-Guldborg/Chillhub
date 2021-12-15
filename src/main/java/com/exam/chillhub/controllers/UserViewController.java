@@ -88,8 +88,9 @@ public class UserViewController implements Navigable, Navigator {
     }
 
     @FXML
-    public void searchAction() {
-        var filter = MediaDB.getInstance().getDB().search(searchInput.textProperty().get());
+    protected void searchAction() {
+        var text = searchInput.textProperty().get();
+        var filter = MediaDB.getInstance().getDB().search(text);
         navigateTo(View.FilterView, filter);
     }
 
