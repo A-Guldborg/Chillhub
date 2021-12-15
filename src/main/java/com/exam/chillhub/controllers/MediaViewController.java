@@ -42,11 +42,16 @@ public class MediaViewController extends MediaController {
             VBox vbox = new VBox();
             for (int i = 1; i <= season.getEpisodes(); i++) {
                 HBox hbox = new HBox();
-                hbox.getChildren().addAll(new Label("Episode " + i), new Button("Play"));
+                Button playBtn = new Button("Play");
+                playBtn.setOnAction(event -> super.onPlay());
+                playBtn.getStyleClass().add("ui-transparent");
+                hbox.getChildren().addAll(new Label("Episode " + i), playBtn);
                 vbox.getChildren().add(hbox);
             }
             tPane.setContent(vbox);
+            tPane.getStyleClass().add("ui-transparent");
             seasonsPane.getPanes().add(tPane);
+            seasonsPane.getStyleClass().add("ui-transparent");
         }
     }
 
@@ -65,7 +70,6 @@ public class MediaViewController extends MediaController {
         year.textProperty().bindBidirectional(model.yearProperty());
         rating.textProperty().bind(model.ratingProperty().asString());
 
-        // Todo add filter view for each category
         var categories = MediaDB.getInstance().getCategories();
         var mediaCategories = model.getCategories();
         for (CategoryType cat : mediaCategories) {
