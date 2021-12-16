@@ -1,5 +1,6 @@
 package com.exam.chillhub.database;
 
+import com.exam.chillhub.ChillhubApplication;
 import com.exam.chillhub.models.Account;
 import com.exam.chillhub.models.Filter;
 import com.exam.chillhub.models.Media;
@@ -54,7 +55,7 @@ public class AccountDB {
                 AccountDB.add(account);
             }
             inputFile.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             try {
                 FileWriter file = new FileWriter(dbPath, false);
                 // Creates standard accounts if it was not possible to read the accounts initially (lack of accounts.txt file)
@@ -64,8 +65,9 @@ public class AccountDB {
                         "admin2;#936472, #cf503c;\n" +
                         "66;87;101;112;188;\n");
                 file.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            } catch (Exception ex) {
+                ChillhubApplication.showError("Kunne ikke læse brugerindstillinger", "Brugerindstillinger kunne ikke læses fra filsystemet. Prøv at give Chillhub administrator rettigheder.", "");
+                throw new RuntimeException(ex.getMessage());
             }
             readAccounts();
         }
@@ -88,7 +90,8 @@ public class AccountDB {
             FileWriter file = new FileWriter(dbPath, false);
             file.write(savetxt.toString());
             file.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
+            ChillhubApplication.showError("Data kunne ikke gemmes", "Brugerdataene kunne ikke gemmes til filsystemet. Prøv at give Chillhub administrator rettigheder.", "");
             throw new RuntimeException(e.getMessage());
         }
     }
